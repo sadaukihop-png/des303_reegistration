@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -27,6 +27,9 @@
       border-color: #2a3a5e;
     }
 
+body.dark-mode .subhead {
+  color: #c8d8e8;
+}
     body.dark-mode .card:hover {
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     }
@@ -665,17 +668,6 @@
       transition: background 0.12s ease;
     }
 
-    .tr.clickable {
-      cursor: pointer;
-    }
-
-    .tr.clickable:hover {
-      background: #f4f7fa;
-    }
-
-    .tr.clickable:active {
-      background: #e8edf2;
-    }
 
     .cell {
       overflow-wrap: anywhere;
@@ -813,7 +805,7 @@
       font-weight: 600;
       color: #2a3a4a;
     }
-
+    
     .credentials-box .value {
       font-family: monospace;
       background: white;
@@ -822,7 +814,24 @@
       font-size: 14px;
       border: 1px solid #dfe4e8;
     }
+/* Add this to your CSS */
+.group-selector .required-indicator {
+  color: #e74c3c;
+  font-weight: bold;
+  margin-left: 4px;
+}
 
+.group-selector.error {
+  border-color: #e74c3c !important;
+  border-width: 2px !important;
+  transition: border-color 0.3s ease;
+}
+
+/* Add a visual indicator for the group select */
+.group-selector select.error {
+  border-color: #e74c3c !important;
+  background-color: #fff5f5 !important;
+}
     /* ===== SEARCH & FILTER ===== */
     .search-box {
       display: flex;
@@ -1168,8 +1177,8 @@
       style="width: 80px; height: auto; display: inline-block; border-radius: 12px;"
     >
   </div>
-  <h1 style="margin: 2px 0 2px 0; font-size: 20px; font-weight: 700; color: #0a1628; white-space: nowrap;">DES303 GROUP REGISTRATION</h1>
-  <p class="subhead" style="margin: 0 0 0 0; font-size: 14px; color: #4a5a6a;">Abuja Model Study Centre</p>
+  <h1 style="margin: 2px 0 2px 0; font-size: 20px; font-weight: 700; white-space: nowrap;">DES303 GROUP REGISTRATION</h1>
+<p class="subhead" style="margin: 0 0 0 0; font-size: 14px;">Abuja Model Study Centre</p>
   <div class="divider" style="margin: 8px 0 0 0;"></div>
 </section>
   <!-- ===== TABS ===== -->
@@ -1190,13 +1199,17 @@
   </div>
 </div>
 
-    <section class="card group-selector">
-      <label for="registerGroupSelect">Select Your Group</label>
-      <select id="registerGroupSelect">
-        <option value="">Loading groups...</option>
-      </select>
-    </section>
-
+    <<section class="card group-selector">
+  <label for="registerGroupSelect">
+    Select Your Group <span class="required-indicator">*</span>
+  </label>
+  <select id="registerGroupSelect">
+    <option value="">-- Please select a group --</option>
+  </select>
+  <small style="color: #66737f; display: block; margin-top: 4px; font-size: 13px;">
+    You must select a group before you can register
+  </small>
+</section>
     <section class="card">
       <h2>Register Yourself</h2>
       <p class="sub" style="margin-bottom:12px;">Each student should register themselves using their own matriculation number.</p>
@@ -1393,7 +1406,7 @@
 
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
-  const ADMIN_PASSWORD = "admin123";
+  const ADMIN_PASSWORD = "admin1@2";
 
   // ===== DOM REFS =====
   const $ = id => document.getElementById(id);
@@ -1764,7 +1777,7 @@
       ` : `<div class="payment-cell">${paymentDisplay}</div>`;
       
       html += `
-        <div class="tr clickable" data-id="${esc(m.id)}">
+        <div class="tr" data-id="${esc(m.id)}">
           <div class="cell">${i + 1}</div>
           <div class="cell">${esc(m.name)}</div>
           <div class="cell">${esc(m.matric)}</div>
@@ -1863,7 +1876,7 @@ function renderMyRegistration() {
   if (!myRegistrationId || !members[myRegistrationId]) {
     mineCard.classList.add("hidden");
     if (registrationStatus) {
-      registrationStatus.textContent = "You haven't registered yet. Fill in the form above.";
+      registrationStatus.textContent = "You haven't registered yet. Fill in the form below.";
     }
     return;
   }
@@ -1874,7 +1887,7 @@ function renderMyRegistration() {
     <p><strong>Matriculation Number:</strong> ${esc(m.matric)}</p>
     <p><strong>Group:</strong> ${esc(groups[m.groupId]?.name || 'Unknown')}</p>
     <p><strong>Payment Status:</strong> ${paymentStatus}</p>
-    <button class="secondary small-btn" onclick="showSelected('${m.id}')">👁️ View Details</button>
+    <button class="secondary small-btn" onclick="showSelected('${m.id}')"> Details</button>
   `;
   mineCard.classList.remove("hidden");
   if (registrationStatus) {
@@ -2054,12 +2067,64 @@ deleteBtn.onclick = async () => {
 // ===== FORM SUBMIT =====
 form.onsubmit = async (e) => {
   e.preventDefault();
-  if (!currentGroupId) { setStatus(statusEl, "Please select a group first.", "error"); return; }
+  
+  // Enhanced group validation with visual feedback
+  if (!currentGroupId) { 
+    setStatus(statusEl, "❌ Please select a group first before registering.", "error");
+    // Highlight the group selector to draw attention
+    const groupSelector = document.querySelector('.group-selector');
+    groupSelector.style.borderColor = '#e74c3c';
+    groupSelector.style.borderWidth = '2px';
+    setTimeout(() => {
+      groupSelector.style.borderColor = '';
+      groupSelector.style.borderWidth = '';
+    }, 3000);
+    return; 
+  }
+  
+  // ===== VISUAL REMINDER FOR GROUP SELECTION =====
+// Add a visual reminder when user tries to type in the form without selecting a group
+nameEl.addEventListener('focus', () => {
+  if (!currentGroupId) {
+    const groupSelector = document.querySelector('.group-selector');
+    groupSelector.style.borderColor = '#f39c12';
+    groupSelector.style.borderWidth = '2px';
+    setTimeout(() => {
+      groupSelector.style.borderColor = '';
+      groupSelector.style.borderWidth = '';
+    }, 2000);
+    setStatus(statusEl, "⚠️ Please select a group first before filling in your details.", "");
+  }
+});
+matricEl.addEventListener('focus', () => {
+  if (!currentGroupId) {
+    const groupSelector = document.querySelector('.group-selector');
+    groupSelector.style.borderColor = '#f39c12';
+    groupSelector.style.borderWidth = '2px';
+    setTimeout(() => {
+      groupSelector.style.borderColor = '';
+      groupSelector.style.borderWidth = '';
+    }, 2000);
+    setStatus(statusEl, "⚠️ Please select a group first before filling in your details.", "");
+  }
+});
+
+  // Check if the selected group still exists
+  if (!groups[currentGroupId]) {
+    setStatus(statusEl, "❌ The selected group no longer exists. Please select another group.", "error");
+    currentGroupId = null;
+    registerGroupSelect.value = "";
+    return;
+  }
+  
   if (isSubmitting) return;
 
   const name = nameEl.value.trim().replace(/\s+/g, " ");
   const matric = matricEl.value.trim().replace(/\s+/g, " ").toUpperCase();
-  if (!name || !matric) { setStatus(statusEl, "Please fill in both fields.", "error"); return; }
+  if (!name || !matric) { 
+    setStatus(statusEl, "Please fill in both fields.", "error"); 
+    return; 
+  }
 
   isSubmitting = true;
   submitBtn.disabled = true;
@@ -2317,7 +2382,7 @@ createGroupForm.onsubmit = async (e) => {
 function displayCredentials(name, password) {
   credentialsDisplay.innerHTML = `
     <div class="cred-row"><span class="label">📁 Group Name:</span><span class="value">${esc(name)}</span></div>
-    <div class="cred-row"><span class="label">👑 Leader Username:</span><span class="value">group leader</span></div>
+    <div class="cred-row"><span class="label">👑 Leader Username:</span><span class="value">${esc(name)}</span></div>
     <div class="cred-row"><span class="label">🔑 Leader Password:</span><span class="value" style="background:#fff3cd;border-color:#f39c12;">${esc(password)}</span></div>
     <div style="margin-top:10px;font-size:13px;color:#66737f;text-align:center;border-top:1px solid #dfe4e8;padding-top:10px;">
       ⚠️ Copy these credentials and share with the group leader
