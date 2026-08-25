@@ -1,2505 +1,871 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DES303 Group Registration</title>
   <style>
-    /* ===== RESET & BASE ===== */
-    * { box-sizing: border-box; }
-
+    * { box-sizing: border-box; margin: 0; }
     body {
       font-family: system-ui, -apple-system, sans-serif;
-      margin: 0;
       background: #f4f6f8;
       color: #18212b;
-      min-height: 100vh;
-      transition: background 0.3s ease, color 0.3s ease;
+      transition: background 0.3s, color 0.3s;
+      padding: 12px;
     }
-
-    body.dark-mode {
-      background: #1a1a2e;
-      color: #e8e8e8;
-    }
-
-    body.dark-mode .card {
-      background: #16213e;
-      border-color: #2a3a5e;
-    }
-
-body.dark-mode .subhead {
-  color: #c8d8e8;
-}
-    body.dark-mode .card:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    body.dark-mode .thead {
-      background: #1a2744;
-      color: #a0b4d0;
-    }
-
-    body.dark-mode .tr {
-      border-color: #2a3a5e;
-    }
-
-    body.dark-mode .tr:hover {
-      background: #1e2d4a;
-    }
-
-    body.dark-mode input,
-    body.dark-mode select {
-      background: #1a2744;
-      border-color: #2a3a5e;
-      color: #e8e8e8;
-    }
-
-    body.dark-mode input:focus,
-    body.dark-mode select:focus {
-      border-color: #4a8ab5;
-      box-shadow: 0 0 0 3px rgba(74, 138, 181, 0.2);
-    }
-
-    body.dark-mode .secondary {
-      background: #1a2744;
-      color: #a0b4d0;
-    }
-
-    body.dark-mode .secondary:hover {
-      background: #2a3a5e;
-    }
-
-    body.dark-mode .sub {
-      color: #8899b0;
-    }
-
-    body.dark-mode .notice {
-      background: #1a2744;
-      border-color: #2a3a5e;
-      color: #a0b4d0;
-    }
-
-    body.dark-mode .mine,
-    body.dark-mode .selected {
-      background: #1a2744;
-      border-color: #2a3a5e;
-    }
-
-    body.dark-mode .admin-card {
-      background: #1a2744;
-      border-color: #2a3a5e;
-    }
-
-    body.dark-mode .group-item {
-      background: #1a2744;
-      border-color: #2a3a5e;
-    }
-
-    body.dark-mode .group-item:hover {
-      background: #1e2d4a;
-    }
-
-    body.dark-mode .credentials-box {
-      background: #0a1628;
-      border-color: #2a3a5e;
-    }
-
-    body.dark-mode .credentials-box .value {
-      background: #1a2744;
-      border-color: #2a3a5e;
-    }
-
-    body.dark-mode .tabs {
-      background: #0a1628;
-    }
-
-    body.dark-mode .tab.active {
-      background: #16213e;
-      color: #e8e8e8;
-    }
-
-    body.dark-mode .tab {
-      color: #8899b0;
-    }
-
-    body.dark-mode .user-badge {
-      background: #1a2744;
-      color: #a0b4d0;
-    }
-
-    body.dark-mode .user-badge.admin-badge {
-      background: #0a1628;
-      color: white;
-    }
-
-    body.dark-mode .user-badge.leader-badge {
-      background: #1a4a2a;
-      color: #8fdf8f;
-    }
-
-    body.dark-mode .user-badge.member-badge {
-      background: #1a2a4a;
-      color: #8fb4df;
-    }
-
-    body.dark-mode .theme-toggle {
-      background: #16213e;
-      border-color: #2a3a5e;
-      color: #e8e8e8;
-    }
-
-    body.dark-mode h1 {
-      color: #e8e8e8;
-    }
-
-    body.dark-mode .subhead {
-      color: #8899b0;
-    }
-
-    body.dark-mode h2 {
-      color: #e8e8e8;
-    }
-
-    body.dark-mode h3 {
-      color: #c8d8e8;
-    }
-
-    body.dark-mode label {
-      color: #a0b4d0;
-    }
-
-    body.dark-mode .divider {
-      background: linear-gradient(to right, transparent, #2a3a5e, transparent);
-    }
-
-    /* ===== LAYOUT ===== */
-    .wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 14px;
-    }
-
-    /* ===== CARDS ===== */
+    body.dark { background: #1a1a2e; color: #e8e8e8; }
+    .wrap { max-width: 900px; margin: 0 auto; }
     .card {
-      background: #ffffff;
+      background: #fff;
       border: 1px solid #dfe4e8;
       border-radius: 16px;
       padding: 18px;
       margin-bottom: 14px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-      transition: box-shadow 0.2s ease, background 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      transition: background 0.3s, border-color 0.3s;
     }
-
-    .card:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    /* ===== HEADER ===== */
-    .header-center {
-      text-align: center;
-      padding: 10px 0 6px 0;
-    }
-
-    h1 {
-      font-size: 26px;
-      font-weight: 700;
-      margin: 0 0 2px 0;
-      letter-spacing: -0.3px;
-      color: #0a1628;
-    }
-
-    .subhead {
-      font-size: 16px;
-      font-weight: 500;
-      color: #4a5a6a;
-      margin: 4px 0 0 0;
-    }
-
-    .divider {
-      height: 2px;
-      background: linear-gradient(to right, transparent, #dfe4e8, transparent);
-      margin: 10px 0 16px 0;
-      transition: background 0.3s ease;
-    }
-
-    .user-badge {
+    body.dark .card { background: #16213e; border-color: #2a3a5e; }
+    .header { text-align: center; padding: 8px 0; }
+    .header h1 { font-size: 22px; letter-spacing: -0.3px; }
+    .header .sub { color: #66737f; font-size: 14px; }
+    body.dark .header .sub { color: #a0b4d0; }
+    .badge {
       display: inline-block;
-      background: #eef2f5;
       padding: 6px 14px;
       border-radius: 20px;
       font-size: 13px;
       font-weight: 600;
-      color: #2a3a4a;
-      margin-top: 6px;
-      transition: all 0.3s ease;
-    }
-
-    .user-badge.admin-badge {
-      background: #0a1628;
-      color: white;
-    }
-
-    .user-badge.leader-badge {
-      background: #27ae60;
-      color: white;
-    }
-
-    .user-badge.member-badge {
-      background: #2b6f9e;
-      color: white;
-    }
-
-    /* ===== TYPOGRAPHY ===== */
-    h2 {
-      font-size: 19px;
-      font-weight: 600;
-      margin: 0 0 14px 0;
-      color: #1a2a3a;
-    }
-
-    h3 {
-      font-size: 16px;
-      font-weight: 600;
-      margin: 0 0 10px 0;
+      background: #eef2f5;
       color: #2a3a4a;
     }
-
-    .sub {
-      color: #66737f;
-      line-height: 1.5;
+    body.dark .badge { background: #1a2744; color: #a0b4d0; }
+    .badge.admin { background: #0a1628; color: #fff; }
+    .badge.leader { background: #27ae60; color: #fff; }
+    .badge.member { background: #2b6f9e; color: #fff; }
+    .tabs {
+      display: flex;
+      gap: 4px;
+      background: #f0f3f6;
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 14px;
+    }
+    body.dark .tabs { background: #0a1628; }
+    .tab {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background: transparent;
+      font-weight: 600;
       font-size: 14px;
+      cursor: pointer;
+      color: #4a5a6a;
+      transition: 0.2s;
     }
-  </style>
-</head>
-<body>
-    <style>
-    /* ===== FORM ===== */
-    label {
-      display: block;
-      font-weight: 600;
-      margin: 14px 0 5px 0;
-      font-size: 14px;
-      color: #2a3a4a;
-    }
-
-    input,
-    select {
+    body.dark .tab { color: #8899b0; }
+    .tab.active { background: #fff; color: #0a1628; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    body.dark .tab.active { background: #16213e; color: #e8e8e8; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    label { display: block; font-weight: 600; margin: 12px 0 4px; font-size: 14px; }
+    input, select {
       width: 100%;
       padding: 12px 14px;
       border: 1.5px solid #cfd7de;
       border-radius: 10px;
       font-size: 16px;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.3s ease, color 0.3s ease;
       background: #fafcfe;
-      font-family: inherit;
+      transition: 0.2s;
     }
-
-    input:focus,
-    select:focus {
-      outline: none;
-      border-color: #2b6f9e;
-      box-shadow: 0 0 0 3px rgba(43, 111, 158, 0.12);
-    }
-
-    input::placeholder {
-      color: #9aabb8;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    /* ===== BUTTONS ===== */
-    button {
+    body.dark input, body.dark select { background: #1a2744; border-color: #2a3a5e; color: #e8e8e8; }
+    input:focus, select:focus { outline: none; border-color: #2b6f9e; box-shadow: 0 0 0 3px rgba(43,111,158,0.12); }
+    .btn {
       border: 0;
       border-radius: 10px;
       padding: 12px 16px;
       font-weight: 700;
       font-size: 15px;
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: 0.15s;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
     }
-
-    button:active {
-      transform: scale(0.97);
-    }
-
-    .primary {
-      width: 100%;
-      margin-top: 16px;
-      background: #0a1628;
-      color: white;
-    }
-
-    .primary:hover {
-      background: #1a2a3e;
-    }
-
-    .primary:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .secondary {
-      background: #eef2f5;
-      color: #1a2a3a;
-    }
-
-    .secondary:hover {
-      background: #dfe4e8;
-    }
-
-    .danger {
-      background: #e74c3c;
-      color: white;
-    }
-
-    .danger:hover {
-      background: #c0392b;
-    }
-
-    .success {
-      background: #27ae60;
-      color: white;
-    }
-
-    .success:hover {
-      background: #219a52;
-    }
-
-    .warning {
-      background: #f39c12;
-      color: white;
-    }
-
-    .warning:hover {
-      background: #e67e22;
-    }
-
-    .admin-btn {
-      background: #0a1628;
-      color: white;
-    }
-
-    .admin-btn:hover {
-      background: #1a2a3e;
-    }
-
-    .leader-btn {
-      background: #27ae60;
-      color: white;
-    }
-
-    .leader-btn:hover {
-      background: #219a52;
-    }
-
-    .small-btn {
-      padding: 6px 12px;
-      font-size: 13px;
-      border-radius: 8px;
-    }
-
-    .logout-btn {
-      background: #e74c3c;
-      color: white;
-      padding: 8px 16px;
-      font-size: 14px;
-      border-radius: 8px;
-    }
-
-    .logout-btn:hover {
-      background: #c0392b;
-    }
-
-    /* ===== ADMIN PANEL ===== */
-    .admin-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 14px;
-    }
-
-    .admin-card {
-      background: #f8fafb;
-      border: 1px solid #dfe4e8;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
-
-    .admin-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    }
-
-    .admin-card .icon {
-      font-size: 48px;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .admin-card h3 {
-      margin: 0 0 6px 0;
-    }
-
-    .admin-card p {
-      color: #66737f;
-      font-size: 14px;
-      margin: 0;
-    }
-
-    .admin-card .primary {
-      margin-top: 12px;
-      width: 100%;
-    }
-
-    /* ===== LOGIN PANELS ===== */
-    .login-panel {
-      max-width: 420px;
-      margin: 0 auto;
-    }
-
-    .login-panel .admin-card {
-      text-align: left;
-      cursor: default;
-    }
-
-    .login-panel .admin-card:hover {
-      transform: none;
-      box-shadow: none;
-    }
-
-    .login-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid #eef2f5;
-    }
-
-    .login-header .icon {
-      font-size: 32px;
-    }
-
-    .login-header h3 {
-      margin: 0;
-    }
-
-    /* ===== GROUP LIST ===== */
-    .group-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 14px;
-      background: #f8fafb;
-      border: 1px solid #dfe4e8;
-      border-radius: 10px;
-      margin-bottom: 8px;
-      transition: background 0.15s ease, border-color 0.3s ease;
-    }
-
-    .group-item:hover {
-      background: #f0f3f6;
-    }
-
-    .group-info {
-      flex: 1;
-      cursor: pointer;
-    }
-
-    .group-info strong {
-      display: block;
-      font-size: 15px;
-      color: #0a1628;
-    }
-
-    .group-info small {
-      color: #66737f;
-      font-size: 13px;
-    }
-
-    .group-actions {
-      display: flex;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-
-    .group-actions button {
-      padding: 6px 12px;
-      font-size: 13px;
-      border-radius: 8px;
-    }
-
-    .group-actions .danger {
-      background: #e74c3c;
-      color: white;
-      padding: 6px 10px;
-    }
-
-    .group-actions .danger:hover {
-      background: #c0392b;
-    }
-  </style>
-  <style>
-    /* ===== STATUS ===== */
-    .status {
-      min-height: 22px;
-      margin-top: 10px;
-      font-size: 14px;
-      color: #66737f;
-      padding: 4px 0;
-    }
-
-    .status.success {
-      color: #1a8a4a;
-      font-weight: 600;
-    }
-
-    .status.error {
-      color: #c0392b;
-      font-weight: 600;
-    }
-
-    /* ===== MY SUBMISSION ===== */
-    .mine,
-    .selected {
-      background: #f8fafb;
-      border: 1px solid #dfe4e8;
-      border-radius: 10px;
-      padding: 14px 16px;
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    .mine strong,
-    .selected strong {
-      color: #0a1628;
-    }
-
-    .mine-item {
-      padding: 10px 14px;
-      border-bottom: 1px solid #dfe4e8;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .mine-item:last-child {
-      border-bottom: none;
-    }
-
-    .mine-item .info {
-      flex: 1;
-    }
-
-    .mine-item .info strong {
-      display: block;
-    }
-
-    .mine-item .info small {
-      color: #66737f;
-      font-size: 13px;
-    }
-
-    .mine-item .actions {
-      display: flex;
-      gap: 6px;
-    }
-
-    .mine-item .actions button {
-      padding: 4px 12px;
-      font-size: 12px;
-      border-radius: 6px;
-    }
-
-    .notice {
-      font-size: 14px;
-      color: #66737f;
-      background: #f8fafb;
-      border: 1px solid #dfe4e8;
-      border-radius: 10px;
-      padding: 10px 14px;
-      line-height: 1.5;
-    }
-
-    /* ===== TABLE ===== */
-    .table {
-      margin-top: 12px;
-      border: 1px solid #dfe4e8;
-      border-radius: 10px;
-      overflow: hidden;
-      overflow-x: auto;
-    }
-
-    .thead,
-    .tr {
-      display: grid;
-      grid-template-columns: 48px 1.5fr 1.5fr 1.2fr 1fr;
-      gap: 8px;
-      align-items: center;
-      padding: 11px 14px;
-      min-width: 600px;
-    }
-
-    .thead {
-      font-weight: 700;
-      background: #eef2f5;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      color: #4a5a6a;
-    }
-
-    .tr {
-      border-top: 1px solid #e3e7ea;
-      transition: background 0.12s ease;
-    }
-
-
-    .cell {
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-
-    .payment-cell {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .payment-cell input {
-      width: 80px;
-      padding: 4px 8px;
-      font-size: 13px;
-      border-radius: 6px;
-      min-width: 60px;
-    }
-
-    .payment-cell .paid {
-      color: #27ae60;
-      font-weight: 700;
-    }
-
-    .payment-cell .unpaid {
-      color: #e74c3c;
-      font-weight: 600;
-    }
-
-    .payment-cell .payment-amount {
-      background: #e8f5e9;
-      padding: 2px 10px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 13px;
-      color: #1a8a4a;
-    }
-
-    .empty {
-      color: #66737f;
-      padding: 18px 14px;
-      text-align: center;
-      font-style: italic;
-      background: #fafcfd;
-    }
-
-    /* ===== BACK BUTTON ===== */
-    .back {
-      width: 100%;
-      margin-top: 10px;
-      background: #eef2f5;
-      color: #1a2a3a;
-      font-weight: 600;
-    }
-
-    .back:hover {
-      background: #dfe4e8;
-    }
-
-    /* ===== TAB SYSTEM ===== */
-    .tabs {
-      display: flex;
-      gap: 4px;
-      margin-bottom: 16px;
-      background: #f0f3f6;
-      border-radius: 12px;
-      padding: 4px;
-      transition: background 0.3s ease;
-    }
-
-    .tab {
-      flex: 1;
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: none;
-      background: transparent;
-      font-weight: 600;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      color: #4a5a6a;
-    }
-
-    .tab.active {
-      background: white;
-      color: #0a1628;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-
-    .tab:hover:not(.active) {
-      background: rgba(255, 255, 255, 0.5);
-    }
-
-    .tab-content {
-      display: none;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    /* ===== GROUP SELECTOR ===== */
-    .group-selector {
-      margin-bottom: 14px;
-    }
-
-    .group-selector label {
-      margin-top: 0;
-    }
-
-    /* ===== CREDENTIALS DISPLAY ===== */
-    .credentials-box {
-      background: #f0f7ff;
-      border: 1px solid #2b6f9e;
-      border-radius: 10px;
-      padding: 14px;
-      margin-top: 12px;
-    }
-
-    .credentials-box .cred-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 6px 0;
-      border-bottom: 1px solid #dfe4e8;
-    }
-
-    .credentials-box .cred-row:last-child {
-      border-bottom: none;
-    }
-
-    .credentials-box .label {
-      font-weight: 600;
-      color: #2a3a4a;
-    }
-    
-    .credentials-box .value {
-      font-family: monospace;
-      background: white;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 14px;
-      border: 1px solid #dfe4e8;
-    }
-/* Add this to your CSS */
-.group-selector .required-indicator {
-  color: #e74c3c;
-  font-weight: bold;
-  margin-left: 4px;
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: #0a1628; color: #fff; width: 100%; margin-top: 12px; }
+    body.dark .btn-primary { background: #2b6f9e; }
+    .btn-primary:hover { background: #1a2a3e; }
+    .btn-secondary { background: #eef2f5; color: #1a2a3a; }
+    body.dark .btn-secondary { background: #1a2744; color: #a0b4d0; }
+    .btn-secondary:hover { background: #dfe4e8; }
+    .btn-success { background: #27ae60; color: #fff; }
+    .btn-danger { background: #e74c3c; color: #fff; }
+    .btn-danger:hover { background: #c0392b; }
+    .btn-warning { background: #f39c12; color: #fff; }
+    .btn-sm { padding: 6px 12px; font-size: 13px; border-radius: 8px; }
+    .btn-logout { background: #e74c3c; color: #fff; padding: 8px 16px; font-size: 14px; border-radius: 8px; }
+    .flex { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width:650px){ .grid-2 { grid-template-columns: 1fr; } }
+    .status { min-height: 24px; margin-top: 8px; font-size: 14px; }
+    .status.success { color: #27ae60; font-weight: 600; }
+    .status.error { color: #e74c3c; font-weight: 600; }
+    .notice { background: #f8fafb; border: 1px solid #dfe4e8; border-radius: 10px; padding: 10px 14px; font-size: 14px; color: #66737f; }
+    body.dark .notice { background: #1a2744; border-color: #2a3a5e; color: #a0b4d0; }
+    .mine { background: #f8fafb; border: 1px solid #dfe4e8; border-radius: 10px; padding: 14px 16px; line-height: 1.8; }
+    body.dark .mine { background: #1a2744; border-color: #2a3a5e; }
+    .table-wrap { overflow-x: auto; margin-top: 10px; border: 1px solid #dfe4e8; border-radius: 10px; }
+    body.dark .table-wrap { border-color: #2a3a5e; }
+    .row { display: grid; grid-template-columns: 40px 1.5fr 1.5fr 1.2fr 1fr; gap: 8px; padding: 10px 14px; align-items: center; min-width: 500px; }
+    .row.head { font-weight: 700; background: #eef2f5; font-size: 13px; color: #4a5a6a; }
+    body.dark .row.head { background: #1a2744; color: #a0b4d0; }
+    .row.item { border-top: 1px solid #e3e7ea; }
+    body.dark .row.item { border-color: #2a3a5e; }
+    .row.item:hover { background: #f0f3f6; }
+    body.dark .row.item:hover { background: #1e2d4a; }
+    .empty { color: #66737f; padding: 18px; text-align: center; font-style: italic; }
+    .group-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #f8fafb; border: 1px solid #dfe4e8; border-radius: 10px; margin-bottom: 8px; }
+    body.dark .group-item { background: #1a2744; border-color: #2a3a5e; }
+    .group-item:hover { background: #f0f3f6; }
+    body.dark .group-item:hover { background: #1e2d4a; }
+    .group-info { flex: 1; cursor: pointer; }
+    .group-info strong { display: block; }
+    .group-info small { color: #66737f; font-size: 13px; }
+    body.dark .group-info small { color: #8899b0; }
+    .credentials-box { background: #f0f7ff; border: 1px solid #2b6f9e; border-radius: 10px; padding: 14px; margin-top: 10px; }
+    body.dark .credentials-box { background: #0a1628; border-color: #2a3a5e; }
+    .cred-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #dfe4e8; }
+    body.dark .cred-row { border-color: #2a3a5e; }
+    .cred-row:last-child { border-bottom: none; }
+    .toast-container { position: fixed; top: 70px; right: 14px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; max-width: 340px; }
+    .toast { background: #0a1628; color: #fff; padding: 14px 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); animation: slideIn 0.3s ease; display: flex; align-items: center; gap: 10px; font-size: 14px; border-left: 4px solid #2b6f9e; }
+    .toast.success { border-left-color: #27ae60; }
+    .toast.error { border-left-color: #e74c3c; }
+    .toast .close { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; opacity: 0.7; margin-left: auto; }
+    .theme-toggle { position: fixed; top: 12px; right: 12px; z-index: 1000; background: #fff; border: 1px solid #dfe4e8; border-radius: 50%; width: 44px; height: 44px; font-size: 20px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; }
+    body.dark .theme-toggle { background: #16213e; border-color: #2a3a5e; color: #e8e8e8; }
+    @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    .hidden { display: none !important; }
+    .mt-8 { margin-top: 8px; }
+    .mb-8 { margin-bottom: 8px; }
+    .text-center { text-align: center; }
+    .gap-4 { gap: 4px; }
+    .payment-input { width: 70px; padding: 4px 6px; border-radius: 6px; border: 1.5px solid #cfd7de; font-size: 13px; }
+    body.dark .payment-input { background: #1a2744; border-color: #2a3a5e; color: #e8e8e8; }
+    .paid-badge { color: #27ae60; font-weight: 700; }
+    .unpaid-badge { color: #e74c3c; font-weight: 600; }
+    .search-box { display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+    .search-box input { flex: 1; min-width: 120px; }
+    .search-box select { flex: 0.5; min-width: 100px; }
+    .search-box button { flex: 0.3; min-width: 80px; }
+    .header .logo-text { 
+  font-size: 32px; 
+  font-weight: 900; 
+  letter-spacing: 6px;
+  background: linear-gradient(135deg, #0a1628 0%, #2b6f9e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
-
-.group-selector.error {
-  border-color: #e74c3c !important;
-  border-width: 2px !important;
-  transition: border-color 0.3s ease;
+body.dark .header .logo-text {
+  background: linear-gradient(135deg, #e8e8e8 0%, #4a8ab5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-
-/* Add a visual indicator for the group select */
-.group-selector select.error {
-  border-color: #e74c3c !important;
-  background-color: #fff5f5 !important;
+.header .logo-sub {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 8px;
+  color: #66737f;
+  margin-top: -6px;
 }
-    /* ===== SEARCH & FILTER ===== */
-    .search-box {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-
-    .search-box input {
-      flex: 1;
-      min-width: 150px;
-    }
-
-    .search-box select {
-      min-width: 120px;
-      flex: 0.5;
-    }
-
-    .search-box button {
-      flex: 0.3;
-      min-width: 80px;
-    }
-
-    /* ===== EXPORT BUTTONS ===== */
-    .export-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-
-    .export-actions button {
-      flex: 1;
-      min-width: 100px;
-    }
-
-    /* ===== TOAST NOTIFICATIONS ===== */
-    .toast-container {
-      position: fixed;
-      top: 70px;
-      right: 14px;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      max-width: 340px;
-    }
-
-    .toast {
-      background: #0a1628;
-      color: white;
-      padding: 14px 18px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      animation: slideIn 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-    }
-
-    .toast.success {
-      border-left: 4px solid #27ae60;
-    }
-
-    .toast.error {
-      border-left: 4px solid #e74c3c;
-    }
-
-    .toast.info {
-      border-left: 4px solid #2b6f9e;
-    }
-
-    .toast .close-toast {
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-      font-size: 18px;
-      padding: 0 4px;
-      opacity: 0.7;
-      margin-left: auto;
-    }
-
-    .toast .close-toast:hover {
-      opacity: 1;
-    }
-
-    /* ===== THEME TOGGLE ===== */
-    .theme-toggle {
-      position: fixed;
-      top: 14px;
-      right: 14px;
-      z-index: 1000;
-      background: white;
-      border: 1px solid #dfe4e8;
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      font-size: 20px;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .theme-toggle:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadeOut {
-      from {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-    }
-
-    /* ===== UTILITY ===== */
-    .hidden {
-      display: none !important;
-    }
-
-    .mt-10 {
-      margin-top: 10px;
-    }
-    .mb-10 {
-      margin-bottom: 10px;
-    }
-    .flex {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-    .text-center {
-      text-align: center;
-    }
-    .gap-4 {
-      gap: 4px;
-    }
-    .max-width-500 {
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    .w-full {
-      width: 100%;
-    }
-    .payment-cell .warning {
-  background: #f39c12;
-  color: white;
-  padding: 4px 10px;
-}
-.payment-cell .warning:hover {
-  background: #e67e22;
-}
-.payment-cell .payment-input {
-  width: 80px;
-  padding: 4px 8px;
-  border-radius: 6px;
-  border: 1.5px solid #cfd7de;
-  font-size: 13px;
-}
-.payment-cell .payment-input:focus {
-  border-color: #2b6f9e;
-  outline: none;
-}
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 750px) {
-      .thead,
-      .tr {
-        grid-template-columns: 40px 1fr 1fr 1fr 0.8fr;
-        gap: 6px;
-        padding: 9px 10px;
-        font-size: 13px;
-        min-width: 500px;
-      }
-
-      .payment-cell input {
-        width: 60px;
-        min-width: 50px;
-        font-size: 12px;
-        padding: 3px 6px;
-      }
-    }
-
-    @media (max-width: 650px) {
-      .admin-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-
-      .group-item {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-      }
-
-      .group-actions {
-        justify-content: stretch;
-      }
-
-      .group-actions button {
-        flex: 1;
-      }
-
-      .search-box {
-        flex-direction: column;
-      }
-
-      .search-box input,
-      .search-box select,
-      .search-box button {
-        width: 100%;
-        flex: none;
-      }
-
-      .export-actions button {
-        flex: 1 1 100%;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .wrap {
-        padding: 10px;
-      }
-
-      .card {
-        padding: 14px;
-      }
-
-      h1 {
-        font-size: 21px;
-      }
-
-      .thead,
-      .tr {
-        grid-template-columns: 32px 1fr 1fr 0.9fr 0.7fr;
-        font-size: 12px;
-        padding: 8px 6px;
-        gap: 4px;
-        min-width: 420px;
-      }
-
-      input {
-        font-size: 15px;
-        padding: 11px 12px;
-      }
-
-      button {
-        font-size: 14px;
-        padding: 11px 12px;
-      }
-
-      .tabs {
-        flex-direction: column;
-      }
-
-      .tab {
-        text-align: center;
-      }
-
-      .payment-cell input {
-        width: 50px;
-        min-width: 40px;
-        font-size: 11px;
-        padding: 2px 4px;
-      }
-
-      .admin-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .theme-toggle {
-        top: 10px;
-        right: 10px;
-        width: 36px;
-        height: 36px;
-        font-size: 16px;
-      }
-
-      .toast-container {
-        top: 60px;
-        right: 10px;
-        left: 10px;
-        max-width: none;
-      }
-    }
-
-    @media (max-width: 380px) {
-      .thead,
-      .tr {
-        grid-template-columns: 28px 1fr 1fr 0.8fr 0.6fr;
-        font-size: 11px;
-        padding: 6px 4px;
-        gap: 3px;
-        min-width: 350px;
-      }
-
-      h1 {
-        font-size: 18px;
-      }
-
-      .subhead {
-        font-size: 14px;
-      }
-    }
+body.dark .header .logo-sub { color: #8899b0; }
   </style>
 </head>
 <body>
-    <!-- ===== THEME TOGGLE ===== -->
-<button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
-
-<!-- ===== TOAST CONTAINER ===== -->
+<button class="theme-toggle" id="themeToggle">🌙</button>
 <div class="toast-container" id="toastContainer"></div>
-
 <div class="wrap">
-<!-- ===== HEADER WITH NOUN LOGO ===== -->
-<section class="card header-center" style="padding: 20px 0 10px 0; text-align: center;">
-  <div style="text-align: center; margin-bottom: 6px;">
-    <img 
-      src="noun-logo.webp" 
-      alt="NOUN Logo" 
-      style="width: 80px; height: auto; display: inline-block; border-radius: 12px;"
-    >
-  </div>
-  <h1 style="margin: 2px 0 2px 0; font-size: 20px; font-weight: 700; white-space: nowrap;">DES303 GROUP REGISTRATION</h1>
-<p class="subhead" style="margin: 0 0 0 0; font-size: 14px;">Abuja Model Study Centre</p>
-  <div class="divider" style="margin: 8px 0 0 0;"></div>
-</section>
-  <!-- ===== TABS ===== -->
+
+<!-- HEADER WITH NOUN LOGO -->
+<div class="card header">
+  <img src="noun-logo.webp" alt="NOUN Logo" style="height: 80px; width: auto; display: block; margin: 0 auto;">
+  <h1>DES303 GROUP REGISTRATION</h1>
+  <div class="sub">Abuja Model Study Centre</div>
+</div>
+  <!-- TABS -->
   <div class="tabs" id="tabContainer">
     <button class="tab active" data-tab="register">📝 Register</button>
     <button class="tab" data-tab="groups">📋 Groups</button>
-    <button class="tab" data-tab="admin">⚙️ Admin Panel</button>
+    <button class="tab" data-tab="admin">⚙️ Admin</button>
   </div>
 
-  <!-- ===== TAB 1: REGISTER ===== -->
+  <!-- TAB: REGISTER -->
   <div id="tab-register" class="tab-content active">
-    
-<!-- User Badge / Status -->
-<div class="card" style="padding: 12px 18px;">
-  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-    <span id="userBadge" class="user-badge">👤 Guest</span>
-    <span id="registrationStatus" style="font-size:14px; color:#66737f;">Select a group to register</span>
-  </div>
-</div>
+    <div class="card flex-between">
+      <span class="badge" id="userBadge">👤 Guest</span>
+      <span id="regStatus" style="font-size:14px;color:#66737f;">Select a group to register</span>
+    </div>
 
-    <<section class="card group-selector">
-  <label for="registerGroupSelect">
-    Select Your Group <span class="required-indicator">*</span>
-  </label>
-  <select id="registerGroupSelect">
-    <option value="">-- Please select a group --</option>
-  </select>
-  <small style="color: #66737f; display: block; margin-top: 4px; font-size: 13px;">
-    You must select a group before you can register
-  </small>
-</section>
-    <section class="card">
-      <h2>Register Yourself</h2>
-      <p class="sub" style="margin-bottom:12px;">Each student should register themselves using their own matriculation number.</p>
-      <form id="form">
-        <label for="name">Full Name</label>
-        <input id="name" type="text" required placeholder="Enter your full name" autocomplete="name">
-        <label for="matric">Matriculation Number</label>
-        <input id="matric" type="text" required placeholder="Enter your matriculation number" autocomplete="off">
-        <button class="primary" type="submit" id="submitBtn">✅ Register Me</button>
-        <div id="status" class="status"></div>
+    <div class="card">
+      <label>Select Your Group <span style="color:#e74c3c;">*</span></label>
+      <select id="registerGroupSelect"><option value="">-- Please select --</option></select>
+      <small style="color:#66737f;display:block;margin-top:4px;">You must select a group before registering</small>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:8px;">Register Yourself</h3>
+      <p class="sub" style="margin-bottom:12px;color:#66737f;">Each student registers with their own matriculation number.</p>
+      <form id="regForm">
+        <label>Full Name</label>
+        <input id="fullName" type="text" required placeholder="Enter your full name">
+        <label>Matriculation Number</label>
+        <input id="matricNo" type="text" required placeholder="Enter your matric number">
+        <button class="btn btn-primary" type="submit" id="submitBtn">✅ Register Me</button>
+        <div id="formStatus" class="status"></div>
       </form>
-    </section>
+    </div>
 
-    <section id="myCard" class="card hidden">
-      <h2>My Registration</h2>
-      <div id="mine" class="mine"></div>
-    </section>
-      <section class="card">
-    <div class="actions" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-      <button id="viewBtn" class="secondary">👥 View Group List</button>
-      <button id="copyBtn" class="secondary">📋 Copy List</button>
-      <button id="hideBtn" class="danger hidden" style="grid-column:1/-1;">✕ Hide List</button>
-    </div>
-  </section>
-
-  <section id="listCard" class="card hidden">
-    <h2 id="listTitle">Group Members</h2>
-    <div class="notice">
-      👆 Click a member's row to view details.
-      <span id="leaderNotice" class="hidden" style="display:inline-block;margin-left:8px;font-weight:600;color:#27ae60;">
-        🔑 Leader: Click 💰 to confirm payment
-      </span>
-    </div>
-    <div class="search-box" id="searchBox">
-      <input type="text" id="searchInput" placeholder="🔍 Search by name or matric...">
-      <select id="filterPayment">
-        <option value="all">All Payments</option>
-        <option value="paid">✅ Paid</option>
-        <option value="unpaid">❌ Unpaid</option>
-      </select>
-      <button class="secondary" id="clearSearchBtn">✕ Clear</button>
-    </div>
-    <div id="table" class="table"></div>
-    <div class="export-actions">
-      <button class="secondary" id="exportCsvBtn">📊 Export CSV</button>
-      <button class="secondary" id="exportExcelBtn">📈 Export Excel</button>
-    </div>
-  </section>
-
-  <section id="selectedCard" class="card hidden">
-    <h2>Selected Member</h2>
-    <div id="selected" class="selected"></div>
-    <button id="deleteBtn" class="primary hidden">🗑️ Delete My Registration</button>
-    <button id="backBtn" class="back">← Back to List</button>
-    <div id="deleteStatus" class="status"></div>
-  </section>
-</div>
-
-<!-- ===== TAB 2: GROUPS ===== -->
-<div id="tab-groups" class="tab-content">
-  <section class="card">
-    <h2>All Groups</h2>
-    <div id="groupList">
-      <div class="empty">No groups created yet.</div>
-    </div>
-  </section>
-</div>
-<!-- ===== TAB 3: ADMIN PANEL ===== -->
-<div id="tab-admin" class="tab-content">
-  <section id="adminSelection" class="card">
-    <h2>Admin Panel</h2>
-    <p class="sub">Select your role to access the appropriate panel.</p>
-    <div class="admin-grid">
-      <div class="admin-card" id="adminLoginBtn">
-        <span class="icon">🔐</span>
-        <h3>Admin Login</h3>
-        <p>Create and manage groups</p>
-        <button class="primary admin-btn">Login as Admin</button>
-      </div>
-      <div class="admin-card" id="leaderLoginBtn">
-        <span class="icon">👑</span>
-        <h3>Group Leader Login</h3>
-        <p>Manage your group members & payments</p>
-        <button class="primary leader-btn">Login as Leader</button>
+    <!-- My Registration Card -->
+    <div id="myCard" class="card hidden">
+      <div class="flex-between"><h3 style="margin:0;">🎯 My Registration</h3></div>
+      <div id="myInfo" class="mine"></div>
+      <div class="flex" style="margin-top:12px;">
+        <button class="btn btn-secondary" id="viewListBtn">👥 View Group List</button>
+        <button class="btn btn-secondary" id="copyListBtn">📋 Copy List</button>
       </div>
     </div>
-  </section>
 
-  <section id="adminLoginPanel" class="card hidden login-panel">
-    <div class="admin-card">
-      <div class="login-header">
-        <span class="icon">🔐</span>
-        <h3>Admin Login</h3>
+    <!-- Group List -->
+    <div id="listCard" class="card hidden">
+      <div class="flex-between"><h3 id="listTitle" style="margin:0;">Group Members</h3><button class="btn btn-secondary btn-sm" id="closeListBtn">✕ Close</button></div>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="🔍 Search name or matric...">
+        <select id="filterPayment"><option value="all">All Payments</option><option value="paid">✅ Paid</option><option value="unpaid">❌ Unpaid</option></select>
+        <button class="btn btn-secondary btn-sm" id="clearSearchBtn">✕ Clear</button>
       </div>
+      <div class="table-wrap" id="membersTable"></div>
+      <div class="flex" style="margin-top:10px;">
+        <button class="btn btn-secondary btn-sm" id="exportCsvBtn">📊 CSV</button>
+        <button class="btn btn-secondary btn-sm" id="exportExcelBtn">📈 Excel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: GROUPS -->
+  <div id="tab-groups" class="tab-content">
+    <div class="card"><h3>All Groups</h3><div id="allGroupsList"><div class="empty">No groups created yet.</div></div></div>
+  </div>
+
+  <!-- TAB: ADMIN -->
+  <div id="tab-admin" class="tab-content">
+    <div id="adminSelection" class="card">
+      <h3>Admin Panel</h3>
+      <p class="sub" style="color:#66737f;">Select your role to access the panel.</p>
+      <div class="grid-2">
+        <div class="card" style="text-align:center;cursor:pointer;" id="adminLoginBtn"><span style="font-size:48px;display:block;">🔐</span><h4>Admin Login</h4><button class="btn btn-primary">Login as Admin</button></div>
+        <div class="card" style="text-align:center;cursor:pointer;" id="leaderLoginBtn"><span style="font-size:48px;display:block;">👑</span><h4>Group Leader Login</h4><button class="btn btn-success">Login as Leader</button></div>
+      </div>
+    </div>
+
+    <div id="adminLoginPanel" class="card hidden">
+      <h4>🔐 Admin Login</h4>
       <form id="adminLoginForm">
-        <label for="adminPassword">Admin Password</label>
-        <input id="adminPassword" type="password" required placeholder="Enter admin password">
-        <button class="primary admin-btn" type="submit">🔓 Login</button>
-        <button class="secondary" type="button" id="backToAdminSelection1" style="margin-top:8px;">← Back</button>
+        <label>Admin Password</label>
+        <input id="adminPass" type="password" required placeholder="Enter admin password">
+        <button class="btn btn-primary" type="submit">🔓 Login</button>
+        <button class="btn btn-secondary" type="button" id="backAdmin1" style="margin-top:8px;">← Back</button>
         <div id="adminLoginStatus" class="status"></div>
       </form>
     </div>
-  </section>
 
-  <section id="leaderLoginPanel" class="card hidden login-panel">
-    <div class="admin-card">
-      <div class="login-header">
-        <span class="icon">👑</span>
-        <h3>Group Leader Login</h3>
-      </div>
+    <div id="leaderLoginPanel" class="card hidden">
+      <h4>👑 Group Leader Login</h4>
       <form id="leaderLoginForm">
-        <label for="loginGroupSelect">Select Your Group</label>
-        <select id="loginGroupSelect">
-          <option value="">Loading groups...</option>
-        </select>
-        <label for="loginPassword">Leader Password</label>
-        <input id="loginPassword" type="password" required placeholder="Enter your group password">
-        <button class="primary leader-btn" type="submit">🔓 Login</button>
-        <button class="secondary" type="button" id="backToAdminSelection2" style="margin-top:8px;">← Back</button>
-        <div id="loginStatus" class="status"></div>
+        <label>Select Your Group</label>
+        <select id="leaderGroupSelect"><option value="">Loading...</option></select>
+        <label>Leader Password</label>
+        <input id="leaderPass" type="password" required placeholder="Enter group password">
+        <button class="btn btn-success" type="submit">🔓 Login</button>
+        <button class="btn btn-secondary" type="button" id="backAdmin2" style="margin-top:8px;">← Back</button>
+        <div id="leaderLoginStatus" class="status"></div>
       </form>
     </div>
-  </section>
-      <section id="adminDashboard" class="card hidden">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
-        <h2 style="margin:0;">Admin Dashboard</h2>
-        <button id="logoutAdminBtn" class="logout-btn">🚪 Logout</button>
-      </div>
-      <p class="sub">Create and manage groups. Each group gets a unique leader password.</p>
-      <div class="admin-grid">
-        <div class="admin-card" style="text-align:left;cursor:default;">
-          <h3>📁 Create Group</h3>
-          <form id="createGroupForm">
-            <label for="groupName">Group Name</label>
-            <input id="groupName" type="text" required placeholder="e.g., Group A, Team 1">
-            <button class="primary success" type="submit">➕ Create Group</button>
-            <div id="createGroupStatus" class="status"></div>
-          </form>
-        </div>
-        <div class="admin-card" style="text-align:left;cursor:default;">
-          <h3>📋 Group Credentials</h3>
-          <p class="sub">Recently created group login details</p>
-          <div id="credentialsDisplay" class="credentials-box">
-            <div class="empty" style="padding:8px;">No group created yet in this session.</div>
-          </div>
-        </div>
-      </div>
-      <div style="margin-top:14px;">
-        <h3>All Groups</h3>
-        <div id="adminGroupList">
-          <div class="empty">No groups created yet.</div>
-        </div>
-      </div>
-    </section>
 
-    <section id="leaderDashboard" class="card hidden">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
-        <h2 style="margin:0;">👑 Leader Dashboard</h2>
-        <button id="logoutLeaderBtn" class="logout-btn">🚪 Logout</button>
+    <div id="adminDashboard" class="card hidden">
+      <div class="flex-between"><h3>🔐 Admin Dashboard</h3><button class="btn btn-danger btn-sm" id="logoutAdminBtn">🚪 Logout</button></div>
+      <div class="grid-2">
+        <div><h4>📁 Create Group</h4><form id="createGroupForm"><label>Group Name</label><input id="groupName" type="text" required placeholder="e.g., Group A"><button class="btn btn-success" type="submit" style="width:100%;margin-top:8px;">➕ Create</button><div id="createStatus" class="status"></div></form></div>
+        <div><h4>📋 Credentials</h4><div id="credentialsDisplay" class="credentials-box"><div class="empty">No group created yet.</div></div></div>
       </div>
-      <p class="sub" id="leaderGroupDisplay">Managing: <strong>-</strong></p>
-      <div id="leaderGroupStats" style="display:flex;gap:14px;flex-wrap:wrap;margin:10px 0;">
-        <span style="background:#eef2f5;padding:6px 14px;border-radius:20px;font-size:14px;">👥 Members: <strong id="leaderMemberCount">0</strong></span>
-        <span style="background:#e8f5e9;padding:6px 14px;border-radius:20px;font-size:14px;">✅ Paid: <strong id="leaderPaidCount">0</strong></span>
-        <span style="background:#ffebee;padding:6px 14px;border-radius:20px;font-size:14px;">❌ Unpaid: <strong id="leaderUnpaidCount">0</strong></span>
-      </div>
-      <button id="leaderViewListBtn" class="primary" style="margin-top:4px;">👥 View My Group List</button>
-    </section>
+      <div><h4>All Groups</h4><div id="adminGroupList"><div class="empty">No groups.</div></div></div>
+    </div>
+
+    <div id="leaderDashboard" class="card hidden">
+      <div class="flex-between"><h3>👑 Leader Dashboard</h3><button class="btn btn-danger btn-sm" id="logoutLeaderBtn">🚪 Logout</button></div>
+      <p id="leaderGroupInfo" style="color:#66737f;">Managing: <strong>-</strong></p>
+      <div class="flex" style="margin:10px 0;"><span style="background:#eef2f5;padding:6px 14px;border-radius:20px;">👥 Members: <strong id="leaderMemCount">0</strong></span><span style="background:#e8f5e9;padding:6px 14px;border-radius:20px;">✅ Paid: <strong id="leaderPaidCount">0</strong></span><span style="background:#ffebee;padding:6px 14px;border-radius:20px;">❌ Unpaid: <strong id="leaderUnpaidCount">0</strong></span></div>
+      <button class="btn btn-secondary" id="leaderViewBtn">👥 View My Group</button>
+    </div>
   </div>
-
 </div>
-
-<!-- ===== JAVASCRIPT BEGINS ===== -->
 <script type="module">
-  // =====================================
-  
-  // FIREBASE SETUP & IMPORTS
-  // ================================================================
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-  import {
-    getDatabase, ref, push, set, onValue, remove,
-    query, orderByChild, equalTo, get, update
-  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { getDatabase, ref, push, set, onValue, remove, update, query, orderByChild, equalTo, get } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDgrjgO5e9wamvtvUSDBSkQXhzstg7-Xqs",
-    authDomain: "des303-group-registratio-7bbdb.firebaseapp.com",
-    databaseURL: "https://des303-group-registratio-7bbdb-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "des303-group-registratio-7bbdb",
-    storageBucket: "des303-group-registratio-7bbdb.firebasestorage.app",
-    messagingSenderId: "604672213424",
-    appId: "1:604672213424:web:af614e5a7e663762989675"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyDgrjgO5e9wamvtvUSDBSkQXhzstg7-Xqs",
+  authDomain: "des303-group-registratio-7bbdb.firebaseapp.com",
+  databaseURL: "https://des303-group-registratio-7bbdb-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "des303-group-registratio-7bbdb",
+  storageBucket: "des303-group-registratio-7bbdb.firebasestorage.app",
+  messagingSenderId: "604672213424",
+  appId: "1:604672213424:web:af614e5a7e663762989675"
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const ADMIN_PASSWORD = "admin123";
 
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-  const ADMIN_PASSWORD = "admin1@2";
+// DOM refs
+const $ = id => document.getElementById(id);
+const tabs = document.querySelectorAll('.tab');
+const tabContents = { register: $('tab-register'), groups: $('tab-groups'), admin: $('tab-admin') };
+const registerGroupSelect = $('registerGroupSelect');
+const regForm = $('regForm');
+const fullName = $('fullName');
+const matricNo = $('matricNo');
+const submitBtn = $('submitBtn');
+const formStatus = $('formStatus');
+const userBadge = $('userBadge');
+const regStatus = $('regStatus');
+const myCard = $('myCard');
+const myInfo = $('myInfo');
+const viewListBtn = $('viewListBtn');
+const copyListBtn = $('copyListBtn');
+const listCard = $('listCard');
+const listTitle = $('listTitle');
+const closeListBtn = $('closeListBtn');
+const membersTable = $('membersTable');
+const searchInput = $('searchInput');
+const filterPayment = $('filterPayment');
+const clearSearchBtn = $('clearSearchBtn');
+const exportCsvBtn = $('exportCsvBtn');
+const exportExcelBtn = $('exportExcelBtn');
+const allGroupsList = $('allGroupsList');
+const adminSelection = $('adminSelection');
+const adminLoginBtn = $('adminLoginBtn');
+const leaderLoginBtn = $('leaderLoginBtn');
+const adminLoginPanel = $('adminLoginPanel');
+const leaderLoginPanel = $('leaderLoginPanel');
+const backAdmin1 = $('backAdmin1');
+const backAdmin2 = $('backAdmin2');
+const adminLoginForm = $('adminLoginForm');
+const adminPass = $('adminPass');
+const adminLoginStatus = $('adminLoginStatus');
+const leaderLoginForm = $('leaderLoginForm');
+const leaderGroupSelect = $('leaderGroupSelect');
+const leaderPass = $('leaderPass');
+const leaderLoginStatus = $('leaderLoginStatus');
+const adminDashboard = $('adminDashboard');
+const leaderDashboard = $('leaderDashboard');
+const logoutAdminBtn = $('logoutAdminBtn');
+const logoutLeaderBtn = $('logoutLeaderBtn');
+const createGroupForm = $('createGroupForm');
+const groupName = $('groupName');
+const createStatus = $('createStatus');
+const credentialsDisplay = $('credentialsDisplay');
+const adminGroupList = $('adminGroupList');
+const leaderGroupInfo = $('leaderGroupInfo');
+const leaderMemCount = $('leaderMemCount');
+const leaderPaidCount = $('leaderPaidCount');
+const leaderUnpaidCount = $('leaderUnpaidCount');
+const leaderViewBtn = $('leaderViewBtn');
+const themeToggle = $('themeToggle');
+const toastContainer = $('toastContainer');
 
-  // ===== DOM REFS =====
-  const $ = id => document.getElementById(id);
-  const tabContainer = $("tabContainer");
-  const tabs = tabContainer.querySelectorAll(".tab");
-  const tabContents = {
-    register: $("tab-register"),
-    groups: $("tab-groups"),
-    admin: $("tab-admin")
-  };
+// State
+let groups = {}, members = {}, currentGroupId = null, currentUser = null, myRegistrationId = null, viewingGroupId = null;
 
-  const registerGroupSelect = $("registerGroupSelect");
-  const form = $("form");
-  const nameEl = $("name");
-  const matricEl = $("matric");
-  const submitBtn = $("submitBtn");
-  const statusEl = $("status");
-  const userBadge = $("userBadge");
-  const registrationStatus = $("registrationStatus");
+// Helpers
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;' }[c]));
+const toArray = obj => Object.entries(obj || {}).map(([id,v])=>({id,...v})).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0));
+const isAdmin = () => currentUser?.isAdmin;
+const isLeader = () => currentUser?.isLeader;
 
-  const mineCard = $("myCard");
-  const mineEl = $("mine");
-  const viewBtn = $("viewBtn");
-  const copyBtn = $("copyBtn");
-  const hideBtn = $("hideBtn");
-  const listCard = $("listCard");
-  const listTitle = $("listTitle");
-  const table = $("table");
-  const leaderNotice = $("leaderNotice");
-  const selectedCard = $("selectedCard");
-  const selectedEl = $("selected");
-  const deleteBtn = $("deleteBtn");
-  const backBtn = $("backBtn");
-  const deleteStatus = $("deleteStatus");
-  const searchInput = $("searchInput");
-  const filterPayment = $("filterPayment");
-  const clearSearchBtn = $("clearSearchBtn");
-  const exportCsvBtn = $("exportCsvBtn");
-  const exportExcelBtn = $("exportExcelBtn");
-  const themeToggle = $("themeToggle");
-  const toastContainer = $("toastContainer");
-  const groupList = $("groupList");
-
-  const adminSelection = $("adminSelection");
-  const adminLoginBtn = $("adminLoginBtn");
-  const leaderLoginBtn = $("leaderLoginBtn");
-  const adminLoginPanel = $("adminLoginPanel");
-  const leaderLoginPanel = $("leaderLoginPanel");
-  const backToAdminSelection1 = $("backToAdminSelection1");
-  const backToAdminSelection2 = $("backToAdminSelection2");
-  const adminLoginForm = $("adminLoginForm");
-  const adminPassword = $("adminPassword");
-  const adminLoginStatus = $("adminLoginStatus");
-  const leaderLoginForm = $("leaderLoginForm");
-  const loginGroupSelect = $("loginGroupSelect");
-  const loginPassword = $("loginPassword");
-  const loginStatus = $("loginStatus");
-  const adminDashboard = $("adminDashboard");
-  const leaderDashboard = $("leaderDashboard");
-  const logoutAdminBtn = $("logoutAdminBtn");
-  const logoutLeaderBtn = $("logoutLeaderBtn");
-  const createGroupForm = $("createGroupForm");
-  const groupName = $("groupName");
-  const createGroupStatus = $("createGroupStatus");
-  const credentialsDisplay = $("credentialsDisplay");
-  const adminGroupList = $("adminGroupList");
-  const leaderGroupDisplay = $("leaderGroupDisplay");
-  const leaderMemberCount = $("leaderMemberCount");
-  const leaderPaidCount = $("leaderPaidCount");
-  const leaderUnpaidCount = $("leaderUnpaidCount");
-  const leaderViewListBtn = $("leaderViewListBtn");
-
-  // ===== STATE =====
-  let groups = {};
-  let members = {};
-  let currentGroupId = null;
-  let currentUser = null;
-  let selectedId = null;
-  let isSubmitting = false;
-  let viewingGroupId = null;
-  let myRegistrationId = null;
-
-  // ===== HELPERS =====
-  const esc = s => String(s).replace(/[&<>"']/g, c => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
-  }[c]));
-
-  const setStatus = (el, msg, type = "") => {
-    el.textContent = msg;
-    el.className = "status" + (type ? " " + type : "");
-    if (type) showToast(msg, type === "success" ? "success" : "error");
-  };
-
-  const toArray = obj => Object.entries(obj || {}).map(([id, val]) => ({ id, ...val }))
-    .sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
-
-  const isLeader = () => currentUser && currentUser.isLeader;
-  const isAdmin = () => currentUser && currentUser.isAdmin;
-
-  function showToast(message, type = "info", duration = 4000) {
-    const toast = document.createElement("div");
-    toast.className = `toast ${type}`;
-    const icons = { success: "✅", error: "❌", info: "ℹ️" };
-    toast.innerHTML = `<span>${icons[type] || "ℹ️"}</span><span>${message}</span>
-      <button class="close-toast">×</button>`;
-    toast.querySelector(".close-toast").addEventListener("click", () => {
-      toast.style.animation = "fadeOut 0.3s ease forwards";
-      setTimeout(() => toast.remove(), 300);
-    });
-    toastContainer.appendChild(toast);
-    setTimeout(() => {
-      if (toast.parentNode) {
-        toast.style.animation = "fadeOut 0.3s ease forwards";
-        setTimeout(() => toast.remove(), 300);
-      }
-    }, duration);
-  }
-
-  // ===== DARK MODE =====
-  function toggleTheme() {
-    document.body.classList.toggle("dark-mode");
-    const isDark = document.body.classList.contains("dark-mode");
-    themeToggle.textContent = isDark ? "☀️" : "🌙";
-    localStorage.setItem("darkMode", isDark ? "true" : "false");
-  }
-  if (localStorage.getItem("darkMode") === "true") {
-    document.body.classList.add("dark-mode");
-    themeToggle.textContent = "☀️";
-  }
-  themeToggle.addEventListener("click", toggleTheme);
-
-  // ===== UPDATE GROUP SELECTORS =====
-  function updateGroupSelectors() {
-    const groupOptions = Object.entries(groups)
-      .map(([id, g]) => `<option value="${esc(id)}">${esc(g.name)}</option>`).join("");
-    const emptyOpt = '<option value="">Select a group...</option>';
-    registerGroupSelect.innerHTML = Object.keys(groups).length ? emptyOpt + groupOptions : '<option value="">No groups available</option>';
-    loginGroupSelect.innerHTML = Object.keys(groups).length ? emptyOpt + groupOptions : '<option value="">No groups available</option>';
-  }
-
-  // ===== RENDER FUNCTIONS =====
-  function renderGroups() {
-    const items = toArray(groups);
-
-    if (!items.length) {
-      groupList.innerHTML = '<div class="empty">No groups created yet. Go to Admin Panel to create one.</div>';
-      return;
-    }
-
-    let html = '';
-    items.forEach((g) => {
-      const memberCount = Object.values(members).filter(m => m.groupId === g.id).length;
-      const paidCount = Object.values(members).filter(m => m.groupId === g.id && m.payment).length;
-      html += `
-        <div class="group-item">
-          <div class="group-info" onclick="window.viewGroup('${g.id}')">
-            <strong>${esc(g.name)}</strong>
-            <small>${memberCount} members • ${paidCount} paid • Created ${new Date(g.createdAt).toLocaleDateString()}</small>
-          </div>
-          <div class="group-actions">
-            <button class="secondary" onclick="window.viewGroup('${g.id}')">👥 View</button>
-            ${isAdmin() ? `<button class="danger" onclick="window.deleteGroup('${g.id}')">🗑️</button>` : ''}
-          </div>
-        </div>
-      `;
-    });
-
-    groupList.innerHTML = html;
-  }
-
-  window.viewGroup = (groupId) => {
-    currentGroupId = groupId;
-    viewingGroupId = groupId;
-    const group = groups[groupId];
-    if (group) {
-      registerGroupSelect.value = groupId;
-      switchTab('register');
-      listTitle.textContent = `${esc(group.name)} — Members`;
-      listCard.classList.remove("hidden");
-      hideBtn.classList.remove("hidden");
-      viewBtn.classList.add("hidden");
-      if (isLeader() && currentUser.groupId === groupId) {
-        leaderNotice.classList.remove("hidden");
-      } else {
-        leaderNotice.classList.add("hidden");
-      }
-      renderList(groupId);
-      registrationStatus.textContent = `Viewing: ${esc(group.name)}`;
-      setTimeout(() => listCard.scrollIntoView({ behavior: "smooth" }), 100);
-    }
-  };
-
-  window.deleteGroup = async (groupId) => {
-    if (!isAdmin()) { showToast("Only admins can delete groups.", "error"); return; }
-    const group = groups[groupId];
-    if (!group) return;
-    if (!confirm(`Delete group "${group.name}" and all its members?`)) return;
-    try {
-      const memberIds = Object.entries(members).filter(([id, m]) => m.groupId === groupId).map(([id]) => id);
-      const updates = {};
-      memberIds.forEach(id => { updates[`members/${id}`] = null; });
-      updates[`groups/${groupId}`] = null;
-      await update(ref(db), updates);
-      showToast(`✅ Group "${group.name}" deleted.`, "success");
-    } catch (err) { showToast("❌ Could not delete group.", "error"); }
-  };
-
-  // ===== RENDER ADMIN GROUP LIST =====
-  function renderAdminGroupList() {
-    const items = toArray(groups);
-    if (!items.length) {
-      adminGroupList.innerHTML = '<div class="empty">No groups created yet.</div>';
-      return;
-    }
-    let html = '';
-    items.forEach(g => {
-      const memberCount = Object.values(members).filter(m => m.groupId === g.id).length;
-      const paidCount = Object.values(members).filter(m => m.groupId === g.id && m.payment).length;
-      html += `
-        <div class="group-item">
-          <div class="group-info"><strong>${esc(g.name)}</strong><small>${memberCount} members • ${paidCount} paid</small></div>
-          <div class="group-actions">
-            <button class="secondary" onclick="window.viewGroup('${g.id}')">👥 View</button>
-            <button class="secondary" onclick="window.showGroupPassword('${g.id}')">🔑 Password</button>
-            <button class="danger" onclick="window.deleteGroup('${g.id}')">🗑️</button>
-          </div>
-        </div>
-      `;
-    });
-    adminGroupList.innerHTML = html;
-  }
-
-  // ===== SHOW / REGENERATE GROUP PASSWORD =====
-  window.showGroupPassword = async (groupId) => {
-    if (!isAdmin()) {
-      showToast("Only admins can view passwords.", "error");
-      return;
-    }
-    const group = groups[groupId];
-    if (!group) {
-      showToast("Group not found.", "error");
-      return;
-    }
-
-    const currentPassword = group.password || "No password set";
-    const action = confirm(
-      `Group: ${group.name}\nCurrent Password: ${currentPassword}\n\nClick "OK" to regenerate a new password, or "Cancel" to close.`
-    );
-
-    if (action) {
-      await regenerateGroupPassword(groupId);
-    }
-  };
-
-  window.regenerateGroupPassword = async (groupId) => {
-    if (!isAdmin()) {
-      showToast("Only admins can regenerate passwords.", "error");
-      return;
-    }
-    const group = groups[groupId];
-    if (!group) return;
-
-    const newPassword = Math.random().toString(36).substr(2, 8).toUpperCase();
-    try {
-      await update(ref(db, `groups/${groupId}`), { password: newPassword });
-      groups[groupId].password = newPassword;
-      showToast(`✅ New password for "${group.name}": ${newPassword}`, "success");
-      renderAdminGroupList();
-    } catch (err) {
-      showToast("❌ Failed to regenerate password.", "error");
-      console.error(err);
-    }
-  };
-
-  // ===== CONFIRM PAYMENT =====
-  async function confirmPayment(memberId, amount) {
-    if (!isLeader()) { 
-      showToast("Only group leaders can confirm payments.", "error"); 
-      return; 
-    }
-    const member = members[memberId];
-    if (!member) return;
-    if (member.groupId !== currentUser.groupId) { 
-      showToast("You can only confirm payments for your group.", "error"); 
-      return; 
-    }
-    
-    const cleanAmount = amount.trim();
-    if (!cleanAmount) { 
-      showToast("Please enter a payment amount.", "error"); 
-      return; 
-    }
-    
-    if (isNaN(cleanAmount) || parseFloat(cleanAmount) <= 0) {
-      showToast("Please enter a valid amount (e.g., 5000).", "error");
-      return;
-    }
-    
-    const formattedAmount = parseFloat(cleanAmount).toLocaleString();
-    
-    if (!confirm(`Confirm payment of ₦${formattedAmount} for "${member.name}"?`)) {
-      return;
-    }
-    
-    try {
-      await update(ref(db, `members/${memberId}`), {
-        payment: cleanAmount,
-        paymentConfirmedAt: Date.now(),
-        paymentConfirmedBy: currentUser.uid
-      });
-      showToast(`✅ Payment of ₦${formattedAmount} confirmed for ${member.name}`, "success");
-    } catch (err) { 
-      showToast("❌ Could not confirm payment. Please try again.", "error"); 
-      console.error(err);
-    }
-  }
-
-  // ===== GET FILTERED MEMBERS =====
-  function getFilteredMembers(groupId) {
-    const groupMembers = Object.entries(members)
-      .filter(([id, m]) => m.groupId === groupId)
-      .map(([id, m]) => ({ id, ...m }))
-      .sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
-    const searchTerm = searchInput.value.toLowerCase().trim();
-    const filter = filterPayment.value;
-    let filtered = groupMembers;
-    if (searchTerm) {
-      filtered = filtered.filter(m => m.name.toLowerCase().includes(searchTerm) || m.matric.toLowerCase().includes(searchTerm));
-    }
-    if (filter === "paid") {
-      filtered = filtered.filter(m => m.payment && m.payment.length > 0);
-    } else if (filter === "unpaid") {
-      filtered = filtered.filter(m => !m.payment || m.payment.length === 0);
-    }
-    return filtered;
-  }
-
-  // ===== RENDER LIST =====
-  function renderList(groupId) {
-    const groupMembers = getFilteredMembers(groupId);
-    const isLeaderView = isLeader() && currentUser.groupId === groupId;
-    let html = `<div class="thead"><div>S/N</div><div>Full Name</div><div>Matric Number</div><div>Payment</div><div>Action</div></div>`;
-    
-    if (!groupMembers.length) {
-      const msg = searchInput.value || filterPayment.value !== "all" ? "No members match your search criteria." : "No members in this group yet.";
-      html += `<div class="empty">${msg}</div>`;
-      table.innerHTML = html;
-      return;
-    }
-    
-    groupMembers.forEach((m, i) => {
-      const isPaid = m.payment && m.payment.length > 0;
-      const paymentDisplay = isPaid ? `<span class="payment-amount">₦${esc(m.payment)}</span>` : `<span class="unpaid">❌ Unpaid</span>`;
-      
-      const actionCell = isLeaderView ? `
-        <div class="payment-cell">
-          <input type="number" id="paymentInput_${m.id}" placeholder="Amount" class="payment-input" 
-                 ${isPaid ? 'disabled' : ''} value="${isPaid ? esc(m.payment) : ''}" 
-                 style="width:80px;padding:4px 8px;border-radius:6px;border:1.5px solid #cfd7de;">
-          <button class="small-btn ${isPaid ? 'secondary' : 'success'}" 
-                  onclick="window.handlePayment('${m.id}')" 
-                  ${isPaid ? 'disabled' : ''}
-                  style="${isPaid ? 'background:#eef2f5;color:#1a2a3a;' : 'background:#27ae60;color:white;'}">
-            ${isPaid ? '✅ Paid' : '💰 Confirm'}
-          </button>
-          ${isPaid ? `<button class="small-btn warning" onclick="window.clearPayment('${m.id}')" style="background:#f39c12;color:white;padding:4px 10px;">↩️ Reset</button>` : ''}
-        </div>
-      ` : `<div class="payment-cell">${paymentDisplay}</div>`;
-      
-      html += `
-        <div class="tr" data-id="${esc(m.id)}">
-          <div class="cell">${i + 1}</div>
-          <div class="cell">${esc(m.name)}</div>
-          <div class="cell">${esc(m.matric)}</div>
-          <div class="cell">${paymentDisplay}</div>
-          <div class="cell">${actionCell}</div>
-        </div>
-      `;
-    });
-    
-    table.innerHTML = html;
-    
-    table.querySelectorAll(".tr.clickable").forEach(row => {
-      row.addEventListener("click", (e) => {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') return;
-        const id = row.dataset.id;
-        if (id && members[id]) showSelected(id);
-      });
-    });
-    
-    window.handlePayment = (memberId) => {
-      const input = document.getElementById(`paymentInput_${memberId}`);
-      if (!input) return;
-      const amount = input.value.trim();
-      if (!amount) {
-        showToast("Please enter a payment amount.", "error");
-        return;
-      }
-      if (isNaN(amount) || parseFloat(amount) <= 0) {
-        showToast("Please enter a valid amount.", "error");
-        return;
-      }
-      confirmPayment(memberId, amount);
-    };
-    
-    window.clearPayment = async (memberId) => {
-      if (!isLeader()) {
-        showToast("Only group leaders can clear payments.", "error");
-        return;
-      }
-      const member = members[memberId];
-      if (!member) return;
-      if (member.groupId !== currentUser.groupId) {
-        showToast("You can only clear payments for your group.", "error");
-        return;
-      }
-      if (!confirm(`Clear payment for "${member.name}"?`)) return;
-      try {
-        await update(ref(db, `members/${memberId}`), {
-          payment: "",
-          paymentConfirmedAt: null,
-          paymentConfirmedBy: null
-        });
-        showToast(`✅ Payment cleared for ${member.name}`, "success");
-      } catch (err) {
-        showToast("❌ Could not clear payment. Please try again.", "error");
-      }
-    };
-  }
-
-  // ===== SHOW SELECTED =====
-function showSelected(id) {
-  const m = members[id];
-  if (!m) return;
-  
-  selectedId = id;
-  const paymentStatus = m.payment ? `<span style="color:#27ae60;font-weight:700;">✅ Paid ₦${esc(m.payment)}</span>` : `<span style="color:#e74c3c;font-weight:700;">❌ Unpaid</span>`;
-  
-  const isGroupLeader = isLeader() && currentUser?.groupId === m.groupId;
-  const isSelf = myRegistrationId === id;
-  const canDelete = isGroupLeader && !isSelf;
-  const canDeleteOwn = !isGroupLeader && myRegistrationId === id;
-  
-  selectedEl.innerHTML = `
-    <p><strong>Full Name:</strong> ${esc(m.name)}</p>
-    <p><strong>Matriculation Number:</strong> ${esc(m.matric)}</p>
-    <p><strong>Group:</strong> ${esc(groups[m.groupId]?.name || 'Unknown')}</p>
-    <p><strong>Payment Status:</strong> ${paymentStatus}</p>
-    ${m.paymentConfirmedAt ? `<p><small>Payment confirmed: ${new Date(m.paymentConfirmedAt).toLocaleString()}</small></p>` : ''}
-  `;
-  
-  deleteStatus.textContent = "";
-  
-  if (canDelete || canDeleteOwn) {
-    deleteBtn.classList.remove("hidden");
-    deleteBtn.textContent = canDelete ? "🗑️ Delete Member" : "🗑️ Delete My Registration";
-  } else {
-    deleteBtn.classList.add("hidden");
-  }
-  
-  selectedCard.classList.remove("hidden");
-  selectedCard.scrollIntoView({ behavior: "smooth", block: "start" });
+function showToast(msg, type='info', dur=3500) {
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  const icons = { success:'✅', error:'❌', info:'ℹ️' };
+  t.innerHTML = `<span>${icons[type]||'ℹ️'}</span><span>${msg}</span><button class="close">×</button>`;
+  t.querySelector('.close').onclick = () => { t.style.animation = 'fadeOut 0.3s ease forwards'; setTimeout(()=>t.remove(),300); };
+  toastContainer.appendChild(t);
+  setTimeout(() => { if(t.parentNode) { t.style.animation = 'fadeOut 0.3s ease forwards'; setTimeout(()=>t.remove(),300); } }, dur);
 }
 
-// ===== RENDER MY REGISTRATION =====
-function renderMyRegistration() {
-  if (!myRegistrationId || !members[myRegistrationId]) {
-    mineCard.classList.add("hidden");
-    if (registrationStatus) {
-      registrationStatus.textContent = "You haven't registered yet. Fill in the form below.";
+function setStatus(el, msg, type='') { el.textContent = msg; el.className = 'status' + (type?' '+type:''); if(type) showToast(msg, type==='success'?'success':'error'); }
+
+// Dark mode
+if(localStorage.getItem('dark')==='true') { document.body.classList.add('dark'); themeToggle.textContent='☀️'; }
+themeToggle.onclick = () => { document.body.classList.toggle('dark'); const d=document.body.classList.contains('dark'); themeToggle.textContent=d?'☀️':'🌙'; localStorage.setItem('dark',d); };
+
+// Tabs
+tabs.forEach(tab => tab.addEventListener('click', () => {
+  tabs.forEach(t => t.classList.toggle('active', t===tab));
+  Object.entries(tabContents).forEach(([id,el]) => el.classList.toggle('active', id===tab.dataset.tab));
+}));
+
+// Update selectors
+function updateSelectors() {
+  const opts = Object.entries(groups).map(([id,g]) => `<option value="${esc(id)}">${esc(g.name)}</option>`).join('');
+  registerGroupSelect.innerHTML = Object.keys(groups).length ? `<option value="">-- Please select --</option>${opts}` : '<option value="">No groups available</option>';
+  leaderGroupSelect.innerHTML = Object.keys(groups).length ? `<option value="">Select group...</option>${opts}` : '<option value="">No groups</option>';
+}
+
+// Render functions
+function renderAllGroups() {
+  const items = toArray(groups);
+  if(!items.length) { allGroupsList.innerHTML = '<div class="empty">No groups created yet.</div>'; return; }
+  allGroupsList.innerHTML = items.map(g => {
+    const ms = Object.values(members).filter(m => m.groupId === g.id);
+    const paid = ms.filter(m => m.payment && m.payment.length > 0).length;
+    return `<div class="group-item"><div class="group-info"><strong>${esc(g.name)}</strong><small>${ms.length} members • ${paid} paid</small></div></div>`;
+  }).join('');
+}
+
+function renderAdminGroups() {
+  const items = toArray(groups);
+  if(!items.length) { adminGroupList.innerHTML = '<div class="empty">No groups.</div>'; return; }
+  adminGroupList.innerHTML = items.map(g => {
+    const ms = Object.values(members).filter(m => m.groupId === g.id);
+    const paid = ms.filter(m => m.payment && m.payment.length > 0).length;
+    return `<div class="group-item"><div class="group-info"><strong>${esc(g.name)}</strong><small>${ms.length} members • ${paid} paid</small></div>
+      <div class="flex"><button class="btn btn-secondary btn-sm" onclick="window.viewGroup('${g.id}')">👥</button>
+      <button class="btn btn-secondary btn-sm" onclick="window.showPass('${g.id}')">🔑</button>
+      <button class="btn btn-danger btn-sm" onclick="window.deleteGroup('${g.id}')">🗑️</button></div></div>`;
+  }).join('');
+}// Global functions for onclick
+window.viewGroup = (groupId) => {
+  if(!groups[groupId]) return;
+  viewingGroupId = groupId;
+  currentGroupId = groupId;
+  registerGroupSelect.value = groupId;
+  listTitle.textContent = `${esc(groups[groupId].name)} — Members`;
+  listCard.classList.remove('hidden');
+  renderMembers(groupId);
+  regStatus.textContent = `Viewing: ${esc(groups[groupId].name)}`;
+  document.querySelector('[data-tab="register"]').click();
+  setTimeout(() => listCard.scrollIntoView({ behavior:'smooth' }), 100);
+};
+
+window.showPass = async (groupId) => {
+  if(!isAdmin()) { showToast('Only admins can view passwords.','error'); return; }
+  const g = groups[groupId];
+  if(!g) return;
+  const pass = g.password || 'No password';
+  if(confirm(`Group: ${g.name}\nPassword: ${pass}\n\nOK to regenerate, Cancel to close`)) {
+    const newPass = Math.random().toString(36).substr(2,8).toUpperCase();
+    await update(ref(db, `groups/${groupId}`), { password: newPass });
+    showToast(`✅ New password: ${newPass}`,'success');
+    groups[groupId].password = newPass;
+    renderAdminGroups();
+  }
+};
+
+window.deleteGroup = async (groupId) => {
+  if(!isAdmin()) { showToast('Only admins can delete groups.','error'); return; }
+  const g = groups[groupId];
+  if(!g || !confirm(`Delete "${g.name}" and all members?`)) return;
+  const ms = Object.entries(members).filter(([id,m])=>m.groupId===groupId).map(([id])=>id);
+  const updates = {};
+  ms.forEach(id => updates[`members/${id}`] = null);
+  updates[`groups/${groupId}`] = null;
+  await update(ref(db), updates);
+  showToast(`✅ "${g.name}" deleted`,'success');
+};
+
+window.confirmPay = async (memberId) => {
+  if(!isLeader()) { showToast('Only leaders can confirm payments.','error'); return; }
+  const m = members[memberId];
+  if(!m || m.groupId !== currentUser.groupId) { showToast('Not your group member.','error'); return; }
+  const input = document.getElementById(`pay_${memberId}`);
+  if(!input) return;
+  const amt = input.value.trim();
+  if(!amt || isNaN(amt) || parseFloat(amt) <= 0) { showToast('Enter a valid amount.','error'); return; }
+  if(!confirm(`Confirm ₦${parseFloat(amt).toLocaleString()} for ${m.name}?`)) return;
+  await update(ref(db, `members/${memberId}`), { payment: amt, paymentConfirmedAt: Date.now(), paymentConfirmedBy: currentUser.uid });
+  showToast(`✅ ₦${parseFloat(amt).toLocaleString()} confirmed for ${m.name}`,'success');
+};
+
+window.clearPay = async (memberId) => {
+  if(!isLeader()) { showToast('Only leaders can clear payments.','error'); return; }
+  const m = members[memberId];
+  if(!m || m.groupId !== currentUser.groupId) { showToast('Not your group member.','error'); return; }
+  if(!confirm(`Clear payment for ${m.name}?`)) return;
+  await update(ref(db, `members/${memberId}`), { payment: '', paymentConfirmedAt: null, paymentConfirmedBy: null });
+  showToast(`✅ Payment cleared for ${m.name}`,'success');
+};
+
+// Render members list
+function renderMembers(groupId) {
+  const ms = Object.entries(members).filter(([id,m])=>m.groupId===groupId).map(([id,m])=>({id,...m}))
+    .sort((a,b)=>(a.createdAt||0)-(b.createdAt||0));
+  const search = searchInput.value.toLowerCase().trim();
+  const filter = filterPayment.value;
+  let filtered = ms;
+  if(search) filtered = filtered.filter(m => m.name.toLowerCase().includes(search) || m.matric.toLowerCase().includes(search));
+  if(filter==='paid') filtered = filtered.filter(m => m.payment && m.payment.length > 0);
+  if(filter==='unpaid') filtered = filtered.filter(m => !m.payment || m.payment.length === 0);
+  
+  if(!filtered.length) { membersTable.innerHTML = '<div class="empty">No members match</div>'; return; }
+  const isLeaderView = isLeader() && currentUser?.groupId === groupId;
+  let html = `<div class="row head"><span>#</span><span>Name</span><span>Matric</span><span>Payment</span><span>Action</span></div>`;
+  filtered.forEach((m,i) => {
+    const paid = m.payment && m.payment.length > 0;
+    const payDisplay = paid ? `<span class="paid-badge">✅ ₦${esc(m.payment)}</span>` : `<span class="unpaid-badge">❌ Unpaid</span>`;
+    let action = `<span style="font-size:13px;color:#66737f;">${isLeaderView ? 'Leader' : 'View'}</span>`;
+    if(isLeaderView) {
+      action = `<div class="flex"><input type="number" id="pay_${m.id}" class="payment-input" placeholder="Amount" ${paid?'disabled':''} value="${paid?esc(m.payment):''}">
+        <button class="btn btn-sm ${paid?'btn-secondary':'btn-success'}" onclick="window.confirmPay('${m.id}')" ${paid?'disabled':''}>${paid?'✅':'💰'}</button>
+        ${paid ? `<button class="btn btn-sm btn-warning" onclick="window.clearPay('${m.id}')">↩️</button>` : ''}</div>`;
     }
+    html += `<div class="row item"><span>${i+1}</span><span>${esc(m.name)}</span><span>${esc(m.matric)}</span><span>${payDisplay}</span><span>${action}</span></div>`;
+  });
+  membersTable.innerHTML = html;
+}
+
+// Render my registration
+function renderMyRegistration() {
+  if(!myRegistrationId || !members[myRegistrationId]) {
+    myCard.classList.add('hidden');
+    if(regStatus && !currentGroupId) regStatus.textContent = 'Select a group to register';
     return;
   }
   const m = members[myRegistrationId];
-  const paymentStatus = m.payment ? `✅ Paid ₦${esc(m.payment)}` : '❌ Not yet paid';
-  mineEl.innerHTML = `
-    <p><strong>Full Name:</strong> ${esc(m.name)}</p>
-    <p><strong>Matriculation Number:</strong> ${esc(m.matric)}</p>
+  const paid = m.payment && m.payment.length > 0;
+  myInfo.innerHTML = `
+    <p><strong>Name:</strong> ${esc(m.name)}</p>
+    <p><strong>Matric:</strong> ${esc(m.matric)}</p>
     <p><strong>Group:</strong> ${esc(groups[m.groupId]?.name || 'Unknown')}</p>
-    <p><strong>Payment Status:</strong> ${paymentStatus}</p>
-    <button class="secondary small-btn" onclick="showSelected('${m.id}')"> Details</button>
+    <p><strong>Payment:</strong> ${paid ? `✅ ₦${esc(m.payment)}` : '❌ Not yet paid'}</p>
   `;
-  mineCard.classList.remove("hidden");
-  if (registrationStatus) {
-    registrationStatus.textContent = `✅ Registered as ${m.name}`;
+  myCard.classList.remove('hidden');
+  if(regStatus) regStatus.textContent = `✅ Registered as ${m.name}`;
+  // Show view and copy buttons on my card
+  viewListBtn.classList.remove('hidden');
+  copyListBtn.classList.remove('hidden');
+}
+
+// Update badge
+function updateBadge() {
+  if(isAdmin()) { userBadge.textContent = '🔐 Admin'; userBadge.className = 'badge admin'; }
+  else if(isLeader() && currentUser?.groupId && groups[currentUser.groupId]) {
+    userBadge.textContent = `👑 Leader • ${esc(groups[currentUser.groupId].name)}`;
+    userBadge.className = 'badge leader';
+  } else if(myRegistrationId && members[myRegistrationId]) {
+    const g = groups[members[myRegistrationId].groupId]?.name || 'Unknown';
+    userBadge.textContent = `👤 Member • ${esc(g)}`;
+    userBadge.className = 'badge member';
+  } else {
+    userBadge.textContent = '👤 Guest';
+    userBadge.className = 'badge';
   }
 }
+// ===== EVENT HANDLERS =====
 
-// ===== EXPORT FUNCTIONS =====
-function downloadFile(content, filename, mimeType) {
-  const blob = new Blob([content], { type: mimeType });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
-function exportCSV() {
-  const groupMembers = getFilteredMembers(currentGroupId);
-  if (!groupMembers.length) { showToast("No data to export.", "error"); return; }
-  const headers = ["S/N", "Full Name", "Matric Number", "Payment", "Payment Confirmed At"];
-  const rows = groupMembers.map((m, i) => [i + 1, m.name, m.matric, m.payment || "Unpaid", m.paymentConfirmedAt ? new Date(m.paymentConfirmedAt).toLocaleString() : ""]);
-  const csvContent = [headers.join(","), ...rows.map(row => row.join(","))].join("\n");
-  downloadFile(csvContent, "group_members.csv", "text/csv");
-  showToast("📊 CSV exported successfully!", "success");
-}
-
-function exportExcel() {
-  const groupMembers = getFilteredMembers(currentGroupId);
-  if (!groupMembers.length) { showToast("No data to export.", "error"); return; }
-  let html = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
-    <head><meta charset="UTF-8"><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets>
-    <x:ExcelWorksheet><x:Name>Members</x:Name><x:WorksheetOptions>
-    <x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet>
-    </x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
-    <style>th{background:#eef2f5;font-weight:bold;}td,th{padding:8px 12px;border:1px solid #ccc;}</style>
-    </head><body><table><tr><th>S/N</th><th>Full Name</th><th>Matric Number</th><th>Payment</th><th>Payment Confirmed At</th></tr>`;
-  groupMembers.forEach((m, i) => {
-    html += `<tr><td>${i+1}</td><td>${esc(m.name)}</td><td>${esc(m.matric)}</td><td>${m.payment||"Unpaid"}</td>
-      <td>${m.paymentConfirmedAt ? new Date(m.paymentConfirmedAt).toLocaleString() : ""}</td></tr>`;
-  });
-  html += `</table></body></html>`;
-  downloadFile(html, "group_members.xls", "application/vnd.ms-excel");
-  showToast("📈 Excel exported successfully!", "success");
-}
-// ===== SWITCH TABS =====
-function switchTab(tabId) {
-  tabs.forEach(t => t.classList.toggle("active", t.dataset.tab === tabId));
-  Object.entries(tabContents).forEach(([id, el]) => el.classList.toggle("active", id === tabId));
-}
-
-// ===== TAB CLICK =====
-tabs.forEach(tab => tab.addEventListener("click", () => switchTab(tab.dataset.tab)));
-
-// ===== VIEW / HIDE LIST =====
-viewBtn.onclick = () => {
-  if (!currentGroupId) { 
-    setStatus(statusEl, "Please select a group first.", "error"); 
-    return; 
-  }
-  const group = groups[currentGroupId];
-  if (group) {
-    registerGroupSelect.value = currentGroupId;
-    listTitle.textContent = `${esc(group.name)} — Members`;
-    listCard.classList.remove("hidden");
-    hideBtn.classList.remove("hidden");
-    viewBtn.classList.add("hidden");
-    if (isLeader() && currentUser.groupId === currentGroupId) {
-      leaderNotice.classList.remove("hidden");
-    } else {
-      leaderNotice.classList.add("hidden");
+// Group selection
+registerGroupSelect.onchange = function() {
+  const groupId = this.value;
+  if(groupId && groups[groupId]) {
+    currentGroupId = groupId;
+    regStatus.textContent = `Selected: ${esc(groups[groupId].name)}`;
+    regStatus.style.color = '#27ae60';
+    // Show view button on my card if registered
+    if(myRegistrationId) {
+      viewListBtn.classList.remove('hidden');
+      copyListBtn.classList.remove('hidden');
     }
-    searchInput.value = "";
-    filterPayment.value = "all";
-    renderList(currentGroupId);
-    registrationStatus.textContent = `Viewing: ${esc(group.name)}`;
-    listCard.scrollIntoView({ behavior: "smooth" });
-  }
-};
-
-hideBtn.onclick = () => {
-  listCard.classList.add("hidden");
-  hideBtn.classList.add("hidden");
-  viewBtn.classList.remove("hidden");
-  selectedCard.classList.add("hidden");
-  selectedId = null;
-  if (currentGroupId && groups[currentGroupId]) {
-    registrationStatus.textContent = `Selected: ${esc(groups[currentGroupId].name)}`;
-  }
-};
-
-backBtn.onclick = () => {
-  selectedCard.classList.add("hidden");
-  selectedId = null;
-  if (currentGroupId && groups[currentGroupId]) {
-    registrationStatus.textContent = `Viewing: ${esc(groups[currentGroupId].name)}`;
-  }
-};
-
-// ===== SEARCH & FILTER =====
-searchInput.addEventListener("input", () => {
-  if (!listCard.classList.contains("hidden") && currentGroupId) renderList(currentGroupId);
-});
-filterPayment.addEventListener("change", () => {
-  if (!listCard.classList.contains("hidden") && currentGroupId) renderList(currentGroupId);
-});
-clearSearchBtn.onclick = () => {
-  searchInput.value = "";
-  filterPayment.value = "all";
-  if (!listCard.classList.contains("hidden") && currentGroupId) renderList(currentGroupId);
-};
-
-// ===== EXPORT =====
-exportCsvBtn.onclick = exportCSV;
-exportExcelBtn.onclick = exportExcel;
-
-// ===== DELETE =====
-deleteBtn.onclick = async () => {
-  const m = members[selectedId];
-  if (!m) return;
-  
-  const isGroupLeader = isLeader() && currentUser?.groupId === m.groupId;
-  const isOwn = myRegistrationId === selectedId;
-  
-  if (!isGroupLeader && !isOwn) {
-    setStatus(deleteStatus, "You don't have permission to delete this member.", "error");
-    return;
-  }
-  
-  if (isGroupLeader && isOwn) {
-    setStatus(deleteStatus, "Leaders cannot delete themselves. Use the logout button instead.", "error");
-    return;
-  }
-  
-  let confirmMessage = "";
-  let successMessage = "";
-  
-  if (isGroupLeader && !isOwn) {
-    confirmMessage = `Delete member "${m.name}" from your group?`;
-    successMessage = `✅ Member "${m.name}" has been deleted from your group.`;
-  } else if (isOwn) {
-    confirmMessage = `Delete your registration "${m.name}"?`;
-    successMessage = "✅ Your registration has been deleted.";
-  }
-  
-  if (!confirm(confirmMessage)) return;
-  
-  try {
-    await remove(ref(db, "members/" + selectedId));
-    
-    if (isOwn) {
-      myRegistrationId = null;
-      localStorage.removeItem("des303_user");
-      currentUser = null;
-      renderMyRegistration();
-      updateUserBadge();
-    }
-    
-    selectedCard.classList.add("hidden");
-    selectedId = null;
-    setStatus(statusEl, successMessage, "success");
-    showToast(successMessage, "success");
-    
-    if (!listCard.classList.contains("hidden") && currentGroupId) {
-      renderList(currentGroupId);
-    }
-    
-  } catch (err) {
-    setStatus(deleteStatus, "Could not delete. Please try again.", "error");
-    showToast("❌ Could not delete member.", "error");
-    console.error(err);
-  }
-};
-// ===== FORM SUBMIT =====
-form.onsubmit = async (e) => {
-  e.preventDefault();
-  
-  // Enhanced group validation with visual feedback
-  if (!currentGroupId) { 
-    setStatus(statusEl, "❌ Please select a group first before registering.", "error");
-    // Highlight the group selector to draw attention
-    const groupSelector = document.querySelector('.group-selector');
-    groupSelector.style.borderColor = '#e74c3c';
-    groupSelector.style.borderWidth = '2px';
-    setTimeout(() => {
-      groupSelector.style.borderColor = '';
-      groupSelector.style.borderWidth = '';
-    }, 3000);
-    return; 
-  }
-  
-  // ===== VISUAL REMINDER FOR GROUP SELECTION =====
-// Add a visual reminder when user tries to type in the form without selecting a group
-nameEl.addEventListener('focus', () => {
-  if (!currentGroupId) {
-    const groupSelector = document.querySelector('.group-selector');
-    groupSelector.style.borderColor = '#f39c12';
-    groupSelector.style.borderWidth = '2px';
-    setTimeout(() => {
-      groupSelector.style.borderColor = '';
-      groupSelector.style.borderWidth = '';
-    }, 2000);
-    setStatus(statusEl, "⚠️ Please select a group first before filling in your details.", "");
-  }
-});
-matricEl.addEventListener('focus', () => {
-  if (!currentGroupId) {
-    const groupSelector = document.querySelector('.group-selector');
-    groupSelector.style.borderColor = '#f39c12';
-    groupSelector.style.borderWidth = '2px';
-    setTimeout(() => {
-      groupSelector.style.borderColor = '';
-      groupSelector.style.borderWidth = '';
-    }, 2000);
-    setStatus(statusEl, "⚠️ Please select a group first before filling in your details.", "");
-  }
-});
-
-  // Check if the selected group still exists
-  if (!groups[currentGroupId]) {
-    setStatus(statusEl, "❌ The selected group no longer exists. Please select another group.", "error");
+  } else {
     currentGroupId = null;
-    registerGroupSelect.value = "";
+    regStatus.textContent = 'Select a group to register';
+    regStatus.style.color = '#66737f';
+  }
+};
+
+// Registration form
+regForm.onsubmit = async (e) => {
+  e.preventDefault();
+  // Get selected group
+  const selectedGroupId = registerGroupSelect.value;
+  if(!selectedGroupId || !groups[selectedGroupId]) {
+    setStatus(formStatus, '❌ Please select a group first.', 'error');
     return;
   }
+  currentGroupId = selectedGroupId;
   
-  if (isSubmitting) return;
-
-  const name = nameEl.value.trim().replace(/\s+/g, " ");
-  const matric = matricEl.value.trim().replace(/\s+/g, " ").toUpperCase();
-  if (!name || !matric) { 
-    setStatus(statusEl, "Please fill in both fields.", "error"); 
-    return; 
-  }
-
-  isSubmitting = true;
+  const name = fullName.value.trim().replace(/\s+/g, ' ');
+  const matric = matricNo.value.trim().replace(/\s+/g, ' ').toUpperCase();
+  if(!name || !matric) { setStatus(formStatus, 'Please fill all fields.', 'error'); return; }
+  
   submitBtn.disabled = true;
-  submitBtn.textContent = "⏳ Registering...";
-  setStatus(statusEl, "Checking for duplicates...", "");
-
+  submitBtn.textContent = '⏳ Registering...';
+  
   try {
-    const q = query(ref(db, "members"), orderByChild("matric"), equalTo(matric));
+    // Check duplicate
+    const q = query(ref(db, 'members'), orderByChild('matric'), equalTo(matric));
     const snap = await get(q);
     let duplicate = false;
-    snap.forEach((child) => {
-      const data = child.val();
-      if (data.groupId === currentGroupId) {
-        duplicate = true;
-      }
-    });
-
-    if (duplicate) {
-      setStatus(statusEl, "❌ This matriculation number is already registered in this group.", "error");
-      isSubmitting = false;
-      submitBtn.disabled = false;
-      submitBtn.textContent = "✅ Register Me";
-      return;
+    snap.forEach(child => { if(child.val().groupId === currentGroupId) duplicate = true; });
+    if(duplicate) { setStatus(formStatus, '❌ Matric already registered in this group.', 'error'); submitBtn.disabled=false; submitBtn.textContent='✅ Register Me'; return; }
+    if(myRegistrationId && members[myRegistrationId]?.groupId === currentGroupId) {
+      setStatus(formStatus, '❌ You are already registered in this group.', 'error');
+      submitBtn.disabled=false; submitBtn.textContent='✅ Register Me'; return;
     }
-
-    if (myRegistrationId && members[myRegistrationId] && members[myRegistrationId].groupId === currentGroupId) {
-      setStatus(statusEl, "❌ You are already registered in this group.", "error");
-      isSubmitting = false;
-      submitBtn.disabled = false;
-      submitBtn.textContent = "✅ Register Me";
-      return;
-    }
-
-    const uid = Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
-    const newRef = push(ref(db, "members"));
+    
+    const newRef = push(ref(db, 'members'));
     await set(newRef, {
-      name, matric, groupId: currentGroupId, uid: uid,
+      name, matric, groupId: currentGroupId,
+      uid: Date.now().toString(36) + Math.random().toString(36).substr(2,5),
       createdAt: Date.now(),
-      payment: "",
+      payment: '',
       paymentConfirmedAt: null,
       paymentConfirmedBy: null
     });
-
     myRegistrationId = newRef.key;
-    currentUser = { groupId: currentGroupId, uid: uid };
-    localStorage.setItem("des303_user", JSON.stringify(currentUser));
-
-    form.reset();
-    setStatus(statusEl, "✅ You have been registered successfully!", "success");
-    nameEl.focus();
-    showToast(`🎉 Welcome ${name}! You're now registered.`, "success");
+    currentUser = { groupId: currentGroupId, uid: members[newRef.key]?.uid || '' };
+    localStorage.setItem('des303_user', JSON.stringify(currentUser));
+    regForm.reset();
+    setStatus(formStatus, '✅ Registration successful!', 'success');
+    showToast(`🎉 Welcome ${name}!`,'success');
     renderMyRegistration();
-    updateUserBadge();
-
-  } catch (err) {
-    console.error("Submit error:", err);
-    setStatus(statusEl, "❌ Could not register. Please try again.", "error");
-  } finally {
-    isSubmitting = false;
-    submitBtn.disabled = false;
-    submitBtn.textContent = "✅ Register Me";
-  }
-};
-
-// ===== COPY LIST =====
-copyBtn.onclick = async () => {
-  if (!currentGroupId) { setStatus(statusEl, "Please select a group first.", "error"); return; }
-  const groupMembers = getFilteredMembers(currentGroupId);
-  if (!groupMembers.length) { setStatus(statusEl, "No members to copy.", "error"); return; }
-  const groupNameText = groups[currentGroupId]?.name || "Group";
-  const lines = [
-    "DES303 GROUP REGISTRATION", "Abuja Model Study Centre",
-    `Group: ${groupNameText}`, `Generated: ${new Date().toLocaleString()}`,
-    "", "S/N | Full Name | Matric Number | Payment",
-    ...groupMembers.map((m, i) => `${i+1} | ${m.name} | ${m.matric} | ${m.payment ? 'Paid: ₦' + m.payment : 'Unpaid'}`),
-    "", `Total Members: ${groupMembers.length}`
-  ];
-  const text = lines.join("\n");
-  try {
-    await navigator.clipboard.writeText(text);
-    setStatus(statusEl, "✅ List copied to clipboard!", "success");
-    showToast("📋 List copied to clipboard!", "success");
-  } catch {
-    setStatus(statusEl, "❌ Copy was blocked. Please copy manually.", "error");
-  }
-};
-
-// ===== ADMIN LOGIN =====
-adminLoginBtn.onclick = () => {
-  adminSelection.classList.add("hidden");
-  adminLoginPanel.classList.remove("hidden");
-  adminLoginPanel.scrollIntoView({ behavior: "smooth" });
-};
-
-leaderLoginBtn.onclick = () => {
-  adminSelection.classList.add("hidden");
-  leaderLoginPanel.classList.remove("hidden");
-  leaderLoginPanel.scrollIntoView({ behavior: "smooth" });
-};
-
-backToAdminSelection1.onclick = () => {
-  adminLoginPanel.classList.add("hidden");
-  adminSelection.classList.remove("hidden");
-  setStatus(adminLoginStatus, "", "");
-  adminPassword.value = "";
-};
-
-backToAdminSelection2.onclick = () => {
-  leaderLoginPanel.classList.add("hidden");
-  adminSelection.classList.remove("hidden");
-  setStatus(loginStatus, "", "");
-  loginPassword.value = "";
-};
-
-// ===== ADMIN LOGIN FORM =====
-adminLoginForm.onsubmit = (e) => {
-  e.preventDefault();
-  const password = adminPassword.value.trim();
-  if (password === ADMIN_PASSWORD) {
-    currentUser = { isAdmin: true, uid: "admin_" + Date.now().toString(36) };
-    localStorage.setItem("des303_user", JSON.stringify(currentUser));
-    updateUserBadge();
-    adminLoginPanel.classList.add("hidden");
-    adminDashboard.classList.remove("hidden");
-    setStatus(adminLoginStatus, "✅ Logged in as Admin!", "success");
-    showToast("🔐 Welcome Admin!", "success");
-    adminPassword.value = "";
-    renderAdminGroupList();
-  } else {
-    setStatus(adminLoginStatus, "❌ Incorrect admin password.", "error");
-  }
-};
-
-// ===== LEADER LOGIN FORM =====
-leaderLoginForm.onsubmit = async (e) => {
-  e.preventDefault();
-  const groupId = loginGroupSelect.value;
-  const password = loginPassword.value.trim();
-  if (!groupId || !password) { setStatus(loginStatus, "Please select a group and enter password.", "error"); return; }
-  const group = groups[groupId];
-  if (!group) { setStatus(loginStatus, "❌ Group not found.", "error"); return; }
-  if (group.password !== password) { setStatus(loginStatus, "❌ Incorrect password.", "error"); return; }
-
-  currentUser = { groupId: groupId, uid: "leader_" + Date.now().toString(36), isLeader: true };
-  localStorage.setItem("des303_user", JSON.stringify(currentUser));
-  updateUserBadge();
-  setStatus(loginStatus, "✅ Logged in as group leader!", "success");
-  showToast(`👑 Welcome Leader of ${group.name}!`, "success");
-  leaderLoginForm.reset();
-  leaderLoginPanel.classList.add("hidden");
-  leaderDashboard.classList.remove("hidden");
-  updateLeaderDashboard(groupId);
-  switchTab('register');
-  currentGroupId = groupId;
-  registerGroupSelect.value = groupId;
-  leaderNotice.classList.remove("hidden");
-  document.querySelector('#tab-register').scrollIntoView({ behavior: "smooth" });
-};
-// ===== UPDATE LEADER DASHBOARD =====
-function updateLeaderDashboard(groupId) {
-  const group = groups[groupId];
-  if (!group) return;
-  leaderGroupDisplay.innerHTML = `Managing: <strong>${esc(group.name)}</strong>`;
-  const groupMembers = Object.values(members).filter(m => m.groupId === groupId);
-  const paidCount = groupMembers.filter(m => m.payment && m.payment.length > 0).length;
-  const totalPaid = groupMembers
-    .filter(m => m.payment && m.payment.length > 0)
-    .reduce((sum, m) => sum + parseFloat(m.payment || 0), 0);
-  
-  leaderMemberCount.textContent = groupMembers.length;
-  leaderPaidCount.textContent = paidCount;
-  leaderUnpaidCount.textContent = groupMembers.length - paidCount;
-  
-  const statsDiv = document.getElementById("leaderGroupStats");
-  if (statsDiv) {
-    let totalSpan = statsDiv.querySelector('.total-paid');
-    if (!totalSpan) {
-      totalSpan = document.createElement('span');
-      totalSpan.className = 'total-paid';
-      totalSpan.style.cssText = 'background:#e3f2fd;padding:6px 14px;border-radius:20px;font-size:14px;';
-      statsDiv.appendChild(totalSpan);
-    }
-    totalSpan.innerHTML = `💰 Total: <strong>₦${totalPaid.toLocaleString()}</strong>`;
-  }
-}
-
-// ===== LEADER VIEW LIST =====
-leaderViewListBtn.onclick = () => {
-  if (!currentUser || !currentUser.groupId) return;
-  const groupId = currentUser.groupId;
-  const group = groups[groupId];
-  if (!group) return;
-  switchTab('register');
-  currentGroupId = groupId;
-  registerGroupSelect.value = groupId;
-  listTitle.textContent = `${esc(group.name)} — Members`;
-  listCard.classList.remove("hidden");
-  hideBtn.classList.remove("hidden");
-  viewBtn.classList.add("hidden");
-  leaderNotice.classList.remove("hidden");
-  searchInput.value = "";
-  filterPayment.value = "all";
-  renderList(groupId);
-  setTimeout(() => listCard.scrollIntoView({ behavior: "smooth" }), 100);
-};
-
-// ===== LOGOUT =====
-logoutAdminBtn.onclick = () => {
-  localStorage.removeItem("des303_user");
-  currentUser = null;
-  adminDashboard.classList.add("hidden");
-  adminSelection.classList.remove("hidden");
-  updateUserBadge();
-  setStatus(createGroupStatus, "", "");
-  showToast("Logged out of Admin.", "info");
-};
-
-logoutLeaderBtn.onclick = () => {
-  localStorage.removeItem("des303_user");
-  currentUser = null;
-  leaderDashboard.classList.add("hidden");
-  adminSelection.classList.remove("hidden");
-  updateUserBadge();
-  setStatus(loginStatus, "", "");
-  leaderNotice.classList.add("hidden");
-  showToast("Logged out of Leader.", "info");
-};
-
-// ===== CREATE GROUP =====
-createGroupForm.onsubmit = async (e) => {
-  e.preventDefault();
-  if (!isAdmin()) { setStatus(createGroupStatus, "❌ Only admins can create groups.", "error"); return; }
-  const name = groupName.value.trim().replace(/\s+/g, " ");
-  if (!name) { setStatus(createGroupStatus, "Please enter a group name.", "error"); return; }
-  try {
-    const q = query(ref(db, "groups"), orderByChild("name"), equalTo(name));
-    const snap = await get(q);
-    if (snap.exists()) { setStatus(createGroupStatus, "❌ A group with this name already exists.", "error"); return; }
-    const password = Math.random().toString(36).substr(2, 8).toUpperCase();
-    const newRef = push(ref(db, "groups"));
-    await set(newRef, { name, password, createdAt: Date.now(), createdBy: "admin" });
-    displayCredentials(name, password);
-    createGroupForm.reset();
-    setStatus(createGroupStatus, `✅ Group "${name}" created successfully!`, "success");
-    showToast(`📁 Group "${name}" created! Password: ${password}`, "success");
-    groupName.focus();
-    renderAdminGroupList();
-  } catch (err) {
-    setStatus(createGroupStatus, "❌ Could not create group. Please try again.", "error");
+    updateBadge();
+  } catch(err) {
+    setStatus(formStatus, '❌ Could not register. Please try again.', 'error');
     console.error(err);
   }
+  submitBtn.disabled = false;
+  submitBtn.textContent = '✅ Register Me';
 };
 
-// ===== DISPLAY CREDENTIALS =====
-function displayCredentials(name, password) {
-  credentialsDisplay.innerHTML = `
-    <div class="cred-row"><span class="label">📁 Group Name:</span><span class="value">${esc(name)}</span></div>
-    <div class="cred-row"><span class="label">👑 Leader Username:</span><span class="value">${esc(name)}</span></div>
-    <div class="cred-row"><span class="label">🔑 Leader Password:</span><span class="value" style="background:#fff3cd;border-color:#f39c12;">${esc(password)}</span></div>
-    <div style="margin-top:10px;font-size:13px;color:#66737f;text-align:center;border-top:1px solid #dfe4e8;padding-top:10px;">
-      ⚠️ Copy these credentials and share with the group leader
-    </div>
-  `;
-}
-  // ===== UPDATE USER BADGE =====
-  function updateUserBadge() {
-    if (isAdmin()) {
-      userBadge.textContent = "🔐 Admin";
-      userBadge.className = "user-badge admin-badge";
-    } else if (isLeader() && currentUser.groupId && groups[currentUser.groupId]) {
-      const groupName = groups[currentUser.groupId].name;
-      userBadge.textContent = `👑 Leader • ${esc(groupName)}`;
-      userBadge.className = "user-badge leader-badge";
-    } else if (myRegistrationId && members[myRegistrationId]) {
-      const groupName = groups[members[myRegistrationId].groupId]?.name || 'Unknown';
-      userBadge.textContent = `👤 Member • ${esc(groupName)}`;
-      userBadge.className = "user-badge member-badge";
-    } else {
-      userBadge.textContent = "Guest";
-      userBadge.className = "user-badge";
-    }
+// View list button (on My Registration card)
+viewListBtn.onclick = () => {
+  const gid = myRegistrationId ? members[myRegistrationId]?.groupId : currentGroupId;
+  if(!gid || !groups[gid]) { showToast('Please select a group first.','error'); return; }
+  window.viewGroup(gid);
+};
+
+// Copy list
+copyListBtn.onclick = async () => {
+  const gid = myRegistrationId ? members[myRegistrationId]?.groupId : currentGroupId;
+  if(!gid || !groups[gid]) { showToast('No group selected.','error'); return; }
+  const ms = Object.values(members).filter(m => m.groupId === gid);
+  if(!ms.length) { showToast('No members to copy.','error'); return; }
+  const lines = [`DES303 GROUP REGISTRATION - ${groups[gid].name}`,
+    ...ms.map((m,i) => `${i+1}. ${m.name} | ${m.matric} | ${m.payment ? 'Paid: ₦'+m.payment : 'Unpaid'}`)];
+  try { await navigator.clipboard.writeText(lines.join('\n')); showToast('✅ List copied!','success'); }
+  catch { showToast('❌ Copy failed.','error'); }
+};
+
+// Close list
+closeListBtn.onclick = () => { listCard.classList.add('hidden'); };
+
+// Search & filter
+searchInput.oninput = () => { if(!listCard.classList.contains('hidden') && currentGroupId) renderMembers(currentGroupId); };
+filterPayment.onchange = () => { if(!listCard.classList.contains('hidden') && currentGroupId) renderMembers(currentGroupId); };
+clearSearchBtn.onclick = () => { searchInput.value = ''; filterPayment.value = 'all'; if(currentGroupId) renderMembers(currentGroupId); };
+
+// Export
+function downloadFile(content, filename, mime) { const blob=new Blob([content],{type:mime}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename; a.click(); URL.revokeObjectURL(a.href); }
+exportCsvBtn.onclick = () => {
+  const gid = currentGroupId;
+  if(!gid || !groups[gid]) { showToast('No group selected.','error'); return; }
+  const ms = Object.values(members).filter(m => m.groupId === gid);
+  if(!ms.length) { showToast('No data.','error'); return; }
+  const rows = ['S/N,Name,Matric,Payment', ...ms.map((m,i)=>`${i+1},${m.name},${m.matric},${m.payment||'Unpaid'}`)];
+  downloadFile(rows.join('\n'), `${groups[gid].name}_members.csv`, 'text/csv');
+  showToast('📊 CSV exported!','success');
+};
+exportExcelBtn.onclick = () => {
+  const gid = currentGroupId;
+  if(!gid || !groups[gid]) { showToast('No group selected.','error'); return; }
+  const ms = Object.values(members).filter(m => m.groupId === gid);
+  if(!ms.length) { showToast('No data.','error'); return; }
+  let html = `<html><head><meta charset="UTF-8"></head><body><table><tr><th>S/N</th><th>Name</th><th>Matric</th><th>Payment</th></tr>`;
+  ms.forEach((m,i) => html += `<tr><td>${i+1}</td><td>${m.name}</td><td>${m.matric}</td><td>${m.payment||'Unpaid'}</td></tr>`);
+  html += '</table></body></html>';
+  downloadFile(html, `${groups[gid].name}_members.xls`, 'application/vnd.ms-excel');
+  showToast('📈 Excel exported!','success');
+};
+// ===== ADMIN & LEADER LOGIN =====
+
+adminLoginBtn.onclick = () => { adminSelection.classList.add('hidden'); adminLoginPanel.classList.remove('hidden'); };
+leaderLoginBtn.onclick = () => { adminSelection.classList.add('hidden'); leaderLoginPanel.classList.remove('hidden'); };
+backAdmin1.onclick = () => { adminLoginPanel.classList.add('hidden'); adminSelection.classList.remove('hidden'); adminPass.value=''; adminLoginStatus.textContent=''; };
+backAdmin2.onclick = () => { leaderLoginPanel.classList.add('hidden'); adminSelection.classList.remove('hidden'); leaderPass.value=''; leaderLoginStatus.textContent=''; };
+
+adminLoginForm.onsubmit = (e) => {
+  e.preventDefault();
+  if(adminPass.value.trim() === ADMIN_PASSWORD) {
+    currentUser = { isAdmin: true, uid: 'admin_'+Date.now().toString(36) };
+    localStorage.setItem('des303_user', JSON.stringify(currentUser));
+    adminLoginPanel.classList.add('hidden');
+    adminDashboard.classList.remove('hidden');
+    setStatus(adminLoginStatus, '✅ Logged in as Admin!', 'success');
+    showToast('🔐 Admin logged in','success');
+    adminPass.value='';
+    renderAdminGroups();
+    updateBadge();
+  } else {
+    setStatus(adminLoginStatus, '❌ Incorrect password.', 'error');
   }
+};
 
-  // ===== GROUP SELECT CHANGE =====
-  registerGroupSelect.onchange = () => {
-    const groupId = registerGroupSelect.value;
-    if (groupId && groups[groupId]) {
-      currentGroupId = groupId;
-      const group = groups[groupId];
-      registrationStatus.textContent = `Selected: ${esc(group.name)}`;
-      renderMyRegistration();
-      if (!listCard.classList.contains("hidden")) {
-        listCard.classList.add("hidden");
-        hideBtn.classList.add("hidden");
-        viewBtn.classList.remove("hidden");
-        leaderNotice.classList.add("hidden");
+leaderLoginForm.onsubmit = async (e) => {
+  e.preventDefault();
+  const gid = leaderGroupSelect.value;
+  const pass = leaderPass.value.trim();
+  if(!gid || !groups[gid]) { setStatus(leaderLoginStatus, '❌ Select a group.', 'error'); return; }
+  if(groups[gid].password !== pass) { setStatus(leaderLoginStatus, '❌ Incorrect password.', 'error'); return; }
+  currentUser = { groupId: gid, uid: 'leader_'+Date.now().toString(36), isLeader: true };
+  localStorage.setItem('des303_user', JSON.stringify(currentUser));
+  setStatus(leaderLoginStatus, '✅ Logged in as Leader!', 'success');
+  showToast(`👑 Leader of ${groups[gid].name}`,'success');
+  leaderLoginPanel.classList.add('hidden');
+  leaderDashboard.classList.remove('hidden');
+  currentGroupId = gid;
+  registerGroupSelect.value = gid;
+  updateLeaderDashboard(gid);
+  updateBadge();
+  leaderPass.value='';
+};
+
+function updateLeaderDashboard(gid) {
+  if(!groups[gid]) return;
+  leaderGroupInfo.innerHTML = `Managing: <strong>${esc(groups[gid].name)}</strong>`;
+  const ms = Object.values(members).filter(m => m.groupId === gid);
+  const paid = ms.filter(m => m.payment && m.payment.length > 0).length;
+  leaderMemCount.textContent = ms.length;
+  leaderPaidCount.textContent = paid;
+  leaderUnpaidCount.textContent = ms.length - paid;
+}
+
+leaderViewBtn.onclick = () => {
+  if(currentUser?.groupId) window.viewGroup(currentUser.groupId);
+};
+
+// Logout
+logoutAdminBtn.onclick = () => {
+  localStorage.removeItem('des303_user');
+  currentUser = null;
+  adminDashboard.classList.add('hidden');
+  adminSelection.classList.remove('hidden');
+  updateBadge();
+  showToast('Logged out','info');
+};
+logoutLeaderBtn.onclick = () => {
+  localStorage.removeItem('des303_user');
+  currentUser = null;
+  leaderDashboard.classList.add('hidden');
+  adminSelection.classList.remove('hidden');
+  updateBadge();
+  showToast('Logged out','info');
+};
+
+// Create group
+createGroupForm.onsubmit = async (e) => {
+  e.preventDefault();
+  if(!isAdmin()) { setStatus(createStatus, '❌ Admin only.', 'error'); return; }
+  const name = groupName.value.trim().replace(/\s+/g, ' ');
+  if(!name) { setStatus(createStatus, 'Enter a name.', 'error'); return; }
+  const q = query(ref(db, 'groups'), orderByChild('name'), equalTo(name));
+  const snap = await get(q);
+  if(snap.exists()) { setStatus(createStatus, '❌ Group exists.', 'error'); return; }
+  const password = Math.random().toString(36).substr(2,8).toUpperCase();
+  const newRef = push(ref(db, 'groups'));
+  await set(newRef, { name, password, createdAt: Date.now(), createdBy: 'admin' });
+  credentialsDisplay.innerHTML = `
+    <div class="cred-row"><span>📁 Group:</span><span><strong>${esc(name)}</strong></span></div>
+    <div class="cred-row"><span>👑 Password:</span><span style="background:#fff3cd;padding:2px 10px;border-radius:6px;">${esc(password)}</span></div>
+  `;
+  groupName.value = '';
+  setStatus(createStatus, `✅ "${name}" created!`, 'success');
+  showToast(`📁 "${name}" created! Password: ${password}`,'success');
+  renderAdminGroups();
+  renderAllGroups();
+  updateSelectors();
+};
+
+// ===== FIREBASE LISTENERS =====
+
+onValue(ref(db, 'groups'), (snap) => {
+  groups = snap.val() || {};
+  updateSelectors();
+  renderAllGroups();
+  
+  // Restore session
+  const saved = localStorage.getItem('des303_user');
+  if(saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      if(parsed.isAdmin) {
+        currentUser = parsed;
+        adminSelection.classList.add('hidden');
+        adminDashboard.classList.remove('hidden');
+        renderAdminGroups();
+      } else if(parsed.isLeader && parsed.groupId && groups[parsed.groupId]) {
+        currentUser = parsed;
+        adminSelection.classList.add('hidden');
+        leaderDashboard.classList.remove('hidden');
+        currentGroupId = parsed.groupId;
+        registerGroupSelect.value = parsed.groupId;
+        updateLeaderDashboard(parsed.groupId);
+      } else if(parsed.groupId && groups[parsed.groupId]) {
+        currentUser = parsed;
+        currentGroupId = parsed.groupId;
+        registerGroupSelect.value = parsed.groupId;
+      } else {
+        localStorage.removeItem('des303_user');
+        currentUser = null;
       }
-    } else {
-      currentGroupId = null;
-      mineCard.classList.add("hidden");
-      registrationStatus.textContent = "Select a group to register";
-    }
-  };
+    } catch(e) { localStorage.removeItem('des303_user'); }
+  }
+  updateBadge();
+  if(isAdmin()) renderAdminGroups();
+  if(isLeader() && currentUser?.groupId) updateLeaderDashboard(currentUser.groupId);
+});
 
-  // ===== FIREBASE LISTENERS =====
-  onValue(ref(db, "groups"), (snap) => {
-    groups = snap.val() || {};
-    updateGroupSelectors();
-    renderGroups();
-
-    const savedUser = localStorage.getItem("des303_user");
-    if (savedUser) {
-      try {
-        const parsed = JSON.parse(savedUser);
-        if (parsed.isAdmin) {
-          currentUser = parsed;
-          adminLoginPanel.classList.add("hidden");
-          adminSelection.classList.add("hidden");
-          adminDashboard.classList.remove("hidden");
-          renderAdminGroupList();
-        } else if (parsed.isLeader && parsed.groupId && groups[parsed.groupId]) {
-          currentUser = parsed;
-          leaderLoginPanel.classList.add("hidden");
-          adminSelection.classList.add("hidden");
-          leaderDashboard.classList.remove("hidden");
-          updateLeaderDashboard(parsed.groupId);
-          currentGroupId = parsed.groupId;
-          registerGroupSelect.value = parsed.groupId;
-        } else if (parsed.groupId && groups[parsed.groupId]) {
-          const userRecord = Object.entries(members).find(([id, m]) => m.uid === parsed.uid && m.groupId === parsed.groupId);
-          if (userRecord) {
-            myRegistrationId = userRecord[0];
-            currentUser = parsed;
-            currentGroupId = parsed.groupId;
-            registerGroupSelect.value = parsed.groupId;
-          } else {
-            localStorage.removeItem("des303_user");
-          }
-        } else {
-          localStorage.removeItem("des303_user");
-        }
-      } catch (e) {
-        localStorage.removeItem("des303_user");
+onValue(ref(db, 'members'), (snap) => {
+  members = snap.val() || {};
+  // Find my registration
+  const saved = localStorage.getItem('des303_user');
+  if(saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      if(parsed.uid && !parsed.isAdmin && !parsed.isLeader) {
+        const entry = Object.entries(members).find(([id,m]) => m.uid === parsed.uid);
+        if(entry) { myRegistrationId = entry[0]; }
       }
-    }
+    } catch(e) {}
+  }
+  renderMyRegistration();
+  updateBadge();
+  if(currentGroupId && !listCard.classList.contains('hidden')) renderMembers(currentGroupId);
+  renderAllGroups();
+  if(isAdmin()) renderAdminGroups();
+  if(isLeader() && currentUser?.groupId) updateLeaderDashboard(currentUser.groupId);
+});
 
-    updateUserBadge();
-    if (isLeader() && currentUser.groupId) updateLeaderDashboard(currentUser.groupId);
-    if (isAdmin()) renderAdminGroupList();
-    renderMyRegistration();
-  });
-
-  onValue(ref(db, "members"), (snap) => {
-    members = snap.val() || {};
-    renderMyRegistration();
-    if (viewingGroupId && !listCard.classList.contains("hidden")) renderList(viewingGroupId);
-    renderGroups();
-    if (isLeader() && currentUser.groupId) updateLeaderDashboard(currentUser.groupId);
-    if (isAdmin()) renderAdminGroupList();
-  });
-
-  // ===== INIT =====
-  nameEl.focus();
-  console.log("✅ DES303 Group Registration initialized!");
-  console.log("🔐 Admin Password: admin123");
-  console.log("💡 Each student can register themselves with their matric number.");
-  showToast("🚀 App loaded! Select your group and register yourself.", "info", 3000);
-
-  setTimeout(() => {
-    if (currentUser && currentUser.groupId) {
-      registerGroupSelect.value = currentUser.groupId;
-      currentGroupId = currentUser.groupId;
-      renderMyRegistration();
-    }
-  }, 500);
+// Initial load
+console.log('🚀 DES303 Group Registration loaded!');
+console.log('🔐 Admin Password: admin123');
+setTimeout(() => {
+  if(currentGroupId && groups[currentGroupId]) {
+    registerGroupSelect.value = currentGroupId;
+    regStatus.textContent = `Selected: ${esc(groups[currentGroupId].name)}`;
+  }
+}, 500);
 </script>
 </body>
 </html>
