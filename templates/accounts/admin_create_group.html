@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+        <div class="card">
+
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-plus-circle"></i>
+                    Create New Group
+                </h4>
+            </div>
+
+            <div class="card-body">
+
+                {% if created %}
+
+                <!-- Group Creation Success -->
+                <div class="alert alert-success">
+
+                    <h5>
+                        <i class="fas fa-check-circle"></i>
+                        Group Created Successfully!
+                    </h5>
+
+                    <hr>
+
+                    <p>
+                        <strong>Group Name:</strong>
+                        {{ group.name }}
+                    </p>
+
+                    <p>
+                        <strong>Leader Username:</strong>
+                        <code>{{ leader_username }}</code>
+                    </p>
+
+                    <p>
+                        <strong>Leader Password:</strong>
+                        <code>{{ leader_password }}</code>
+                    </p>
+
+                    <div class="alert alert-warning mt-3 mb-0">
+                        <i class="fas fa-exclamation-triangle"></i>
+
+                        <strong>Important:</strong>
+                        Record these credentials securely and provide them
+                        only to the authorized leader of this group.
+                    </div>
+
+                </div>
+
+                <div class="alert alert-info">
+                    <i class="fas fa-user-shield"></i>
+
+                    <strong>Leader access:</strong>
+                    The group leader can use these credentials to access
+                    the leader dashboard and manage only members belonging
+                    to this group.
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+
+                    <a href="{% url 'accounts:admin_dashboard' %}"
+                       class="btn btn-primary">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Back to Dashboard
+                    </a>
+
+                    <a href="{% url 'accounts:admin_create_group' %}"
+                       class="btn btn-success">
+                        <i class="fas fa-plus"></i>
+                        Create Another Group
+                    </a>
+
+                </div>
+
+                {% else %}
+
+                <!-- Create Group Form -->
+                <form method="post">
+
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+
+                        <label for="group_name" class="form-label">
+                            Group Name
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="group_name"
+                            id="group_name"
+                            class="form-control"
+                            placeholder="e.g., Group A, Group B"
+                            maxlength="100"
+                            required
+                        >
+
+                        <div class="form-text">
+                            Choose a unique name for this group.
+                        </div>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label for="description" class="form-label">
+                            Description
+                            <span class="text-muted">(Optional)</span>
+                        </label>
+
+                        <textarea
+                            name="description"
+                            id="description"
+                            class="form-control"
+                            rows="3"
+                            maxlength="500"
+                            placeholder="Brief description of this group"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+
+                        A secure leader username and password will be
+                        generated automatically after the group is created.
+                    </div>
+
+
+                    <div class="d-grid gap-2">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            <i class="fas fa-save"></i>
+                            Create Group
+                        </button>
+
+                        <a
+                            href="{% url 'accounts:admin_dashboard' %}"
+                            class="btn btn-secondary"
+                        >
+                            <i class="fas fa-arrow-left"></i>
+                            Cancel
+                        </a>
+
+                    </div>
+
+                </form>
+
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

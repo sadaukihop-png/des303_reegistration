@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-lg-4">
+
+        <div class="card login-card">
+
+            <div class="card-header text-center bg-success text-white">
+                <h3 class="mb-1">
+                    <i class="fas fa-user-tie"></i>
+                    Group Leader Login
+                </h3>
+
+                <small>
+                    DES303 Group Management
+                </small>
+            </div>
+
+            <div class="card-body">
+
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+
+                    <strong>Leader access:</strong>
+                    Use the credentials provided by the administrator
+                    to manage your assigned group.
+                </div>
+
+                <form method="post">
+
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+
+                        <label for="group_name" class="form-label">
+                            Group Name
+                        </label>
+
+                        <input
+                            type="text"
+                            name="group_name"
+                            id="group_name"
+                            class="form-control"
+                            placeholder="Enter group name (e.g., Group A)"
+                            autocomplete="organization"
+                            maxlength="100"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label for="password" class="form-label">
+                            Group Password
+                        </label>
+
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            class="form-control"
+                            placeholder="Enter group password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-success w-100"
+                    >
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login to Group Dashboard
+                    </button>
+
+                </form>
+
+
+                <div class="text-center mt-3">
+
+                    <a
+                        href="{% url 'accounts:home' %}"
+                        class="text-decoration-none"
+                    >
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Home
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
