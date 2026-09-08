@@ -1,0 +1,615 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <!-- HEADER -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <div>
+                    <h3 class="mb-1">
+                        <i class="fas fa-user-shield"></i>
+                        Group Leader Dashboard
+                    </h3>
+
+                    <p class="mb-0">
+                        {{ group.name }}
+                    </p>
+                </div>
+
+                <div>
+                    <a href="{% url 'accounts:logout' %}"
+                       class="btn btn-light">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="alert alert-success mb-0">
+                <i class="fas fa-lock"></i>
+
+                <strong>Private Management Area:</strong>
+                You are viewing and managing only your assigned group.
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- STATISTICS -->
+    <div class="row mb-4">
+
+        <div class="col-md-3 mb-3">
+            <div class="card text-center h-100">
+
+                <div class="card-body">
+
+                    <i class="fas fa-users fa-2x text-primary mb-2"></i>
+
+                    <h3>
+                        {{ total_members }}
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Total Members
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-md-3 mb-3">
+            <div class="card text-center h-100">
+
+                <div class="card-body">
+
+                    <i class="fas fa-check-circle fa-2x text-success mb-2"></i>
+
+                    <h3>
+                        {{ paid_count }}
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Paid
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-md-3 mb-3">
+            <div class="card text-center h-100">
+
+                <div class="card-body">
+
+                    <i class="fas fa-clock fa-2x text-warning mb-2"></i>
+
+                    <h3>
+                        {{ unpaid_count }}
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Unpaid
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-md-3 mb-3">
+            <div class="card text-center h-100">
+
+                <div class="card-body">
+
+                    <i class="fas fa-chart-line fa-2x text-info mb-2"></i>
+
+                    <h3>
+                        {{ payment_rate }}%
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Payment Rate
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- EXPORTS -->
+    <div class="card mb-4">
+
+        <div class="card-header">
+
+            <h5 class="mb-0">
+                <i class="fas fa-download"></i>
+                Export Group Data
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <p class="text-muted">
+                Export the complete member information for your group.
+                These exports contain private student information.
+            </p>
+
+            <div class="d-flex flex-wrap gap-2">
+
+                <a href="{% url 'groups:export_csv' group.id %}"
+                   class="btn btn-outline-primary">
+                    <i class="fas fa-file-csv"></i>
+                    CSV
+                </a>
+
+                <a href="{% url 'groups:export_excel' group.id %}"
+                   class="btn btn-outline-success">
+                    <i class="fas fa-file-excel"></i>
+                    Excel
+                </a>
+
+                <a href="{% url 'groups:export_pdf' group.id %}"
+                   class="btn btn-outline-danger">
+                    <i class="fas fa-file-pdf"></i>
+                    PDF
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+    <div class="card mb-4">
+
+        <div class="card-header">
+
+            <h5 class="mb-0">
+                <i class="fas fa-search"></i>
+                Find a Member
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <form method="get"
+                  action="{% url 'groups:leader_dashboard' %}">
+
+                <div class="row">
+
+                    <div class="col-md-9 mb-2">
+
+                        <input
+                            type="text"
+                            name="search"
+                            value="{{ search_query }}"
+                            class="form-control"
+                            placeholder="Search by student name or matric number..."
+                        >
+
+                    </div>
+
+                    <div class="col-md-3 mb-2">
+
+                        <div class="d-grid">
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                                Search
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+            {% if search_query %}
+
+            <div class="mt-3">
+
+                <span class="text-muted">
+                    Search results for:
+                </span>
+
+                <strong>
+                    "{{ search_query }}"
+                </strong>
+
+                <a href="{% url 'groups:leader_dashboard' %}"
+                   class="btn btn-sm btn-outline-secondary ms-2">
+                    Clear
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- MEMBER MANAGEMENT -->
+    <div class="card mb-4">
+
+        <div class="card-header bg-dark text-white">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <h5 class="mb-0">
+                    <i class="fas fa-users-cog"></i>
+                    Member Management
+                </h5>
+
+                <span class="badge bg-light text-dark">
+                    {{ members|length }} shown
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="card-body">
+
+            {% if members %}
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+                            <th>#</th>
+                            <th>Student Name</th>
+                            <th>Matric Number</th>
+                            <th>Payment Status</th>
+                            <th>Amount Paid</th>
+                            <th>Actions</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for member in members %}
+
+                        <tr>
+
+                            <td>
+                                {{ forloop.counter }}
+                            </td>
+
+
+                            <td>
+                                <strong>
+                                    {{ member.full_name }}
+                                </strong>
+                            </td>
+
+
+                            <td>
+                                <span class="font-monospace">
+                                    {{ member.matric_number }}
+                                </span>
+                            </td>
+
+
+                            <td>
+
+                                {% if member.has_paid %}
+
+                                    <span class="badge bg-success">
+                                        <i class="fas fa-check-circle"></i>
+                                        Paid
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="fas fa-clock"></i>
+                                        Unpaid
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+
+                                {% if member.amount_paid %}
+
+                                    <strong>
+                                        ₦{{ member.amount_paid }}
+                                    </strong>
+
+                                {% else %}
+
+                                    <span class="text-muted">
+                                        —
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="d-flex flex-wrap gap-1">
+
+
+                                    <!-- CONFIRM PAYMENT -->
+                                    {% if not member.has_paid %}
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-sm btn-success"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#paymentModal{{ member.id }}"
+                                    >
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        Confirm Payment
+                                    </button>
+
+                                    {% else %}
+
+                                    <!-- REVERSE PAYMENT -->
+                                    <form method="post"
+                                          action="{% url 'groups:leader_reverse_payment' member.id %}"
+                                          class="d-inline">
+
+                                        {% csrf_token %}
+
+                                        <button
+                                            type="submit"
+                                            class="btn btn-sm btn-warning"
+                                            onclick="return confirm('Reverse the payment for {{ member.full_name|escapejs }}?');"
+                                        >
+                                            <i class="fas fa-undo"></i>
+                                            Reverse
+                                        </button>
+
+                                    </form>
+
+                                    {% endif %}
+
+
+                                    <!-- DELETE MEMBER -->
+                                    <form method="post"
+                                          action="{% url 'groups:leader_delete_member' member.id %}"
+                                          class="d-inline">
+
+                                        {% csrf_token %}
+
+                                        <button
+                                            type="submit"
+                                            class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Remove {{ member.full_name|escapejs }} from this group? This will deactivate the member registration.');"
+                                        >
+                                            <i class="fas fa-trash"></i>
+                                            Delete
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- PAYMENT MODAL -->
+                        <div
+                            class="modal fade"
+                            id="paymentModal{{ member.id }}"
+                            tabindex="-1"
+                            aria-hidden="true"
+                        >
+
+                            <div class="modal-dialog">
+
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+
+                                        <h5 class="modal-title">
+                                            <i class="fas fa-money-bill-wave"></i>
+                                            Confirm Payment
+                                        </h5>
+
+                                        <button
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                        ></button>
+
+                                    </div>
+
+
+                                    <form method="post"
+                                          action="{% url 'groups:leader_confirm_payment' member.id %}">
+
+                                        {% csrf_token %}
+
+                                        <div class="modal-body">
+
+                                            <div class="mb-3">
+
+                                                <label class="form-label">
+                                                    Student
+                                                </label>
+
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    value="{{ member.full_name }}"
+                                                    readonly
+                                                >
+
+                                            </div>
+
+
+                                            <div class="mb-3">
+
+                                                <label class="form-label">
+                                                    Matric Number
+                                                </label>
+
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    value="{{ member.matric_number }}"
+                                                    readonly
+                                                >
+
+                                            </div>
+
+
+                                            <div class="mb-3">
+
+                                                <label
+                                                    for="amount{{ member.id }}"
+                                                    class="form-label"
+                                                >
+                                                    Amount Paid (₦)
+                                                </label>
+
+                                                <input
+                                                    type="number"
+                                                    name="amount"
+                                                    id="amount{{ member.id }}"
+                                                    class="form-control"
+                                                    min="0.01"
+                                                    step="0.01"
+                                                    required
+                                                    placeholder="Enter amount paid"
+                                                >
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="modal-footer">
+
+                                            <button
+                                                type="button"
+                                                class="btn btn-secondary"
+                                                data-bs-dismiss="modal"
+                                            >
+                                                Cancel
+                                            </button>
+
+                                            <button
+                                                type="submit"
+                                                class="btn btn-success"
+                                            >
+                                                <i class="fas fa-check"></i>
+                                                Confirm Payment
+                                            </button>
+
+                                        </div>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            {% else %}
+
+            <div class="text-center py-5">
+
+                <i class="fas fa-user-slash fa-3x text-muted mb-3"></i>
+
+                {% if search_query %}
+
+                    <h5>No matching members found</h5>
+
+                    <p class="text-muted">
+                        No member matches "{{ search_query }}".
+                    </p>
+
+                {% else %}
+
+                    <h5>No active members</h5>
+
+                    <p class="text-muted">
+                        There are currently no active members in your group.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+    <div class="text-center mb-5">
+
+        <a href="{% url 'groups:group_detail' group.id %}"
+           class="btn btn-outline-primary">
+            <i class="fas fa-eye"></i>
+            View Group Page
+        </a>
+
+        <a href="{% url 'accounts:home' %}"
+           class="btn btn-outline-secondary">
+            <i class="fas fa-home"></i>
+            Home
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
