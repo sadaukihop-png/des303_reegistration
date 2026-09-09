@@ -1,9 +1,0 @@
-Django>=5.0
-psycopg2-binary
-python-dotenv
-argon2-cffi
-django-ratelimit
-openpyxl
-reportlab
-Pillow
-django-crispy-forms
