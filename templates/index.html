@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- PLATFORM HEADER --><div class="card header-card"><div class="card-body text-center">
+
+    <!-- NOUN LOGO -->
+    <div class="logo-container">
+        <img
+            src="{% static 'images/noun-logo.webp' %}"
+            alt="National Open University of Nigeria Logo"
+            class="noun-logo"
+        >
+    </div>
+
+    <!-- TITLE -->
+    <h1 class="main-title">
+        DES303 GROUP REGISTRATION
+    </h1>
+
+    <h2 class="sub-title">
+        Abuja Model Study Centre
+    </h2>
+
+    <p class="text-muted mt-3 mb-0">
+        Student group registration and management platform
+    </p>
+
+</div>
+
+</div><!-- MAIN NAVIGATION --><div class="card nav-card mt-4"><div class="card-body">
+
+    <h5 class="text-center mb-4">
+        <i class="fas fa-compass"></i>
+        Get Started
+    </h5>
+
+    <div class="row g-3 justify-content-center">
+
+        <!-- STUDENT REGISTRATION -->
+        <div class="col-6 col-md-3">
+
+            <a
+                href="{% url 'members:guest_register' %}"
+                class="btn btn-warning w-100 nav-btn"
+            >
+                <i class="fas fa-user-plus"></i>
+                <br>
+                Register
+            </a>
+
+        </div>
+
+
+        <!-- CHECK REGISTRATION -->
+        <div class="col-6 col-md-3">
+
+            <a
+                href="{% url 'members:registered_view' %}"
+                class="btn btn-info w-100 nav-btn"
+            >
+                <i class="fas fa-id-card"></i>
+                <br>
+                My Registration
+            </a>
+
+        </div>
+
+
+        <!-- VIEW GROUPS -->
+        <div class="col-6 col-md-3">
+
+            <a
+                href="{% url 'groups:public_group_list' %}"
+                class="btn btn-success w-100 nav-btn"
+            >
+                <i class="fas fa-users"></i>
+                <br>
+                View Groups
+            </a>
+
+        </div>
+
+
+        <!-- GROUP LEADER -->
+        <div class="col-6 col-md-3">
+
+            <a
+                href="{% url 'accounts:leader_login' %}"
+                class="btn btn-primary w-100 nav-btn"
+            >
+                <i class="fas fa-user-tie"></i>
+                <br>
+                Group Leader
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div><!-- STUDENT INFORMATION --><div class="card mt-4"><div class="card-body">
+
+    <div class="row text-center">
+
+        <div class="col-md-4 mb-3 mb-md-0">
+
+            <i class="fas fa-user-plus fa-2x mb-2"></i>
+
+            <h6>
+                Register
+            </h6>
+
+            <small class="text-muted">
+                Register your name and matric number
+                in your assigned group.
+            </small>
+
+        </div>
+
+
+        <div class="col-md-4 mb-3 mb-md-0">
+
+            <i class="fas fa-id-card fa-2x mb-2"></i>
+
+            <h6>
+                Check Registration
+            </h6>
+
+            <small class="text-muted">
+                Use your matric number to view your
+                registration and group information.
+            </small>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <i class="fas fa-file-alt fa-2x mb-2"></i>
+
+            <h6>
+                Group Report
+            </h6>
+
+            <small class="text-muted">
+                Registered students can access their
+                group's member list for report preparation.
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div><!-- PUBLIC STATISTICS --><div class="row mt-4 text-center stats-row"><div class="col-md-4 mb-3">
+
+    <div class="stat-box">
+
+        <h3>
+            {{ total_groups }}
+        </h3>
+
+        <p class="mb-0">
+            Active Groups
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="col-md-4 mb-3">
+
+    <div class="stat-box">
+
+        <h3>
+            {{ total_members }}
+        </h3>
+
+        <p class="mb-0">
+            Registered Students
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="col-md-4 mb-3">
+
+    <div class="stat-box">
+
+        <h3>
+            {% now "Y" %}
+        </h3>
+
+        <p class="mb-0">
+            Academic Year
+        </p>
+
+    </div>
+
+</div>
+
+</div><!-- ADMIN ACCESS --><div class="text-center mt-4 mb-5"><small class="text-muted">
+    System administrator?
+</small>
+
+<a
+    href="{% url 'accounts:admin_login' %}"
+    class="text-decoration-none ms-1"
+>
+    <i class="fas fa-user-shield"></i>
+    Admin Login
+</a>
+
+</div>{% endblock %}
