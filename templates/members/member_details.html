@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+
+        <!-- PERSONAL REGISTRATION -->
+        <div class="card mb-4">
+
+            <div class="card-header bg-primary text-white text-center">
+
+                <h3 class="mb-1">
+                    <i class="fas fa-user-check"></i>
+                    My Registration
+                </h3>
+
+                <p class="mb-0">
+                    DES303 Group Registration
+                </p>
+
+            </div>
+
+
+            <div class="card-body">
+
+                <h5 class="mb-3">
+                    <i class="fas fa-user"></i>
+                    Student Information
+                </h5>
+
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered">
+
+                        <tr>
+                            <th style="width: 40%;">
+                                Full Name
+                            </th>
+
+                            <td>
+                                {{ member.full_name }}
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <th>
+                                Matric Number
+                            </th>
+
+                            <td>
+                                <span class="font-monospace">
+                                    {{ member.matric_number }}
+                                </span>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <th>
+                                Group
+                            </th>
+
+                            <td>
+                                <strong>
+                                    {{ group.name }}
+                                </strong>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <th>
+                                My Payment Status
+                            </th>
+
+                            <td>
+
+                                {% if member.has_paid %}
+
+                                <span class="badge bg-success">
+                                    <i class="fas fa-check-circle"></i>
+                                    Paid
+                                </span>
+
+                                {% else %}
+
+                                <span class="badge bg-warning text-dark">
+                                    <i class="fas fa-clock"></i>
+                                    Unpaid
+                                </span>
+
+                                {% endif %}
+
+                            </td>
+                        </tr>
+
+
+                        {% if member.has_paid and member.amount_paid %}
+
+                        <tr>
+                            <th>
+                                My Amount Paid
+                            </th>
+
+                            <td>
+                                <strong>
+                                    ₦{{ member.amount_paid }}
+                                </strong>
+                            </td>
+                        </tr>
+
+                        {% endif %}
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- GROUP STATISTICS -->
+        <div class="card mb-4">
+
+            <div class="card-header">
+
+                <h5 class="mb-0">
+                    <i class="fas fa-chart-bar"></i>
+                    Group Statistics
+                </h5>
+
+            </div>
+
+
+            <div class="card-body">
+
+                <div class="row text-center">
+
+                    <!-- TOTAL -->
+                    <div class="col-md-3 mb-3">
+
+                        <div class="p-3 border rounded h-100">
+
+                            <i class="fas fa-users fa-2x text-primary mb-2"></i>
+
+                            <h4>
+                                {{ member_count }}
+                            </h4>
+
+                            <small class="text-muted">
+                                Total Members
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PAID -->
+                    <div class="col-md-3 mb-3">
+
+                        <div class="p-3 border rounded h-100">
+
+                            <i class="fas fa-check-circle fa-2x text-success mb-2"></i>
+
+                            <h4>
+                                {{ paid_count }}
+                            </h4>
+
+                            <small class="text-muted">
+                                Paid
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- UNPAID -->
+                    <div class="col-md-3 mb-3">
+
+                        <div class="p-3 border rounded h-100">
+
+                            <i class="fas fa-clock fa-2x text-warning mb-2"></i>
+
+                            <h4>
+                                {{ unpaid_count }}
+                            </h4>
+
+                            <small class="text-muted">
+                                Unpaid
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PAYMENT RATE -->
+                    <div class="col-md-3 mb-3">
+
+                        <div class="p-3 border rounded h-100">
+
+                            <i class="fas fa-chart-line fa-2x text-info mb-2"></i>
+
+                            <h4>
+                                {{ payment_rate }}%
+                            </h4>
+
+                            <small class="text-muted">
+                                Payment Rate
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="alert alert-info mt-3 mb-0">
+
+                    <i class="fas fa-info-circle"></i>
+
+                    Group statistics are provided for transparency.
+                    Individual information about other students remains private.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRIVACY NOTICE -->
+        <div class="card mb-4">
+
+            <div class="card-body">
+
+                <div class="alert alert-secondary mb-0">
+
+                    <i class="fas fa-shield-alt"></i>
+
+                    <strong>Privacy Notice</strong>
+
+                    <p class="mb-0 mt-2">
+
+                        You can view your own registration information
+                        and general statistics for your group.
+
+                        Other students' names, matric numbers, payment
+                        amounts and individual payment records are not
+                        displayed.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+        <div class="text-center mb-5">
+
+            <a
+                href="{% url 'members:registered_view' %}"
+                class="btn btn-primary"
+            >
+                <i class="fas fa-search"></i>
+                Check Another Registration
+            </a>
+
+            <a
+                href="{% url 'accounts:home' %}"
+                class="btn btn-secondary"
+            >
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+
+        <div class="card">
+
+            <!-- HEADER -->
+            <div class="card-header text-center bg-primary text-white">
+
+                <h4 class="mb-1">
+                    <i class="fas fa-user-plus"></i>
+                    DES303 Student Registration
+                </h4>
+
+                <p class="mb-0">
+                    Register yourself in your assigned group
+                </p>
+
+            </div>
+
+
+            <div class="card-body">
+
+                <!-- PRIVACY NOTICE -->
+                <div class="alert alert-info">
+
+                    <i class="fas fa-shield-alt"></i>
+
+                    <strong>Privacy Notice:</strong>
+
+                    Your name and matric number are used for group
+                    registration. Individual student information is not
+                    displayed on the public group pages.
+
+                </div>
+
+
+                <form method="post">
+
+                    {% csrf_token %}
+
+
+                    <!-- STEP 1 -->
+                    <div class="mb-4">
+
+                        <label for="group_id" class="form-label">
+                            <strong>Step 1: Select Your Group</strong>
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <select
+                            name="group_id"
+                            id="group_id"
+                            class="form-select"
+                            required
+                        >
+
+                            <option value="">
+                                -- Select your group --
+                            </option>
+
+                            {% for group in groups %}
+
+                            <option value="{{ group.id }}">
+                                {{ group.name }}
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                        <div class="form-text">
+                            Select the group assigned to you.
+                        </div>
+
+                    </div>
+
+
+                    <hr>
+
+
+                    <!-- STEP 2 -->
+                    <div class="mb-3">
+
+                        <label for="full_name" class="form-label">
+                            <strong>Step 2: Full Name</strong>
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="full_name"
+                            id="full_name"
+                            class="form-control"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            maxlength="200"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- MATRIC NUMBER -->
+                    <div class="mb-4">
+
+                        <label for="matric_number" class="form-label">
+                            <strong>Matric Number</strong>
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="matric_number"
+                            id="matric_number"
+                            class="form-control"
+                            placeholder="e.g., NOU123456789"
+                            autocomplete="off"
+                            maxlength="20"
+                            required
+                        >
+
+                        <div class="form-text">
+                            Each matric number can only be registered once.
+                        </div>
+
+                    </div>
+
+
+                    <!-- SUBMIT -->
+                    <div class="d-grid">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            <i class="fas fa-paper-plane"></i>
+                            Register Now
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <!-- NAVIGATION -->
+                <div class="text-center mt-4">
+
+                    <a
+                        href="{% url 'accounts:home' %}"
+                        class="text-decoration-none"
+                    >
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Home
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

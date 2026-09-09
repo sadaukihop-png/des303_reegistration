@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-8 mx-auto">    <div class="card">
+
+        <!-- HEADER -->
+        <div class="card-header bg-success text-white text-center">
+
+            <h4 class="mb-1">
+                <i class="fas fa-check-circle"></i>
+                Registration Successful
+            </h4>
+
+            <small>
+                DES303 Group Registration
+            </small>
+
+        </div>
+
+
+        <!-- BODY -->
+        <div class="card-body text-center">
+
+            <div class="mb-4">
+                <i class="fas fa-user-check fa-5x text-success"></i>
+            </div>
+
+
+            <h3>
+                Welcome, {{ member.full_name }}!
+            </h3>
+
+            <p class="lead">
+                Your registration has been successfully completed.
+            </p>
+
+
+            <!-- REGISTRATION DETAILS -->
+            <div class="alert alert-info text-start">
+
+                <strong>
+                    <i class="fas fa-id-card"></i>
+                    Your Registration Details
+                </strong>
+
+                <hr>
+
+                <p class="mb-1">
+                    <strong>Full Name:</strong>
+                    {{ member.full_name }}
+                </p>
+
+                <p class="mb-1">
+                    <strong>Matric Number:</strong>
+                    <span class="font-monospace">
+                        {{ member.matric_number }}
+                    </span>
+                </p>
+
+                <p class="mb-0">
+                    <strong>Group:</strong>
+                    {{ group.name }}
+                </p>
+
+            </div>
+
+
+            <!-- REPORT INFORMATION -->
+            <div class="alert alert-success text-start">
+
+                <i class="fas fa-file-alt"></i>
+
+                <strong>
+                    Group Report Information
+                </strong>
+
+                <p class="mb-0 mt-2">
+                    After registration, you can use your matric number
+                    to view your registration and access the list of
+                    students in your group. The group member list can
+                    be copied for use when preparing your DES303 report.
+                </p>
+
+            </div>
+
+
+            <!-- IMPORTANT -->
+            <div class="alert alert-warning text-start">
+
+                <i class="fas fa-exclamation-triangle"></i>
+
+                <strong>Important:</strong>
+
+                <p class="mb-0 mt-2">
+                    Please keep your matric number safe. You will need
+                    it to access your registration information later.
+                </p>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+
+                <a
+                    href="{% url 'members:registered_view' %}"
+                    class="btn btn-primary"
+                >
+                    <i class="fas fa-user"></i>
+                    View My Registration
+                </a>
+
+                <a
+                    href="{% url 'accounts:home' %}"
+                    class="btn btn-secondary"
+                >
+                    <i class="fas fa-home"></i>
+                    Back to Home
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>{% endblock %}

@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6 col-lg-5">
+
+        <div class="card">
+
+            <!-- HEADER -->
+            <div class="card-header text-center bg-primary text-white">
+
+                <h4 class="mb-1">
+                    <i class="fas fa-id-card"></i>
+                    View My Registration
+                </h4>
+
+                <small>
+                    DES303 Group Registration
+                </small>
+
+            </div>
+
+
+            <div class="card-body">
+
+                <p class="text-muted text-center">
+                    Enter your matric number to view your own
+                    registration details.
+                </p>
+
+
+                <!-- PRIVACY NOTICE -->
+                <div class="alert alert-info">
+
+                    <i class="fas fa-lock"></i>
+
+                    <strong>Private Information:</strong>
+
+                    This page displays only the registration associated
+                    with the matric number you provide. Other students'
+                    personal information is not displayed.
+
+                </div>
+
+
+                <form method="post">
+
+                    {% csrf_token %}
+
+                    <div class="mb-4">
+
+                        <label
+                            for="matric_number"
+                            class="form-label"
+                        >
+                            Matric Number
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="matric_number"
+                            id="matric_number"
+                            class="form-control"
+                            placeholder="Enter your matric number"
+                            autocomplete="off"
+                            maxlength="20"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="d-grid">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            <i class="fas fa-search"></i>
+                            View My Details
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <div class="text-center mt-4">
+
+                    <a
+                        href="{% url 'accounts:home' %}"
+                        class="text-decoration-none"
+                    >
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Home
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
